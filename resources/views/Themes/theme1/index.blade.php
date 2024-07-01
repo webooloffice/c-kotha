@@ -4,7 +4,6 @@
     {{ config('config') }}
     <!-- hero section -->
     <section id="hero">
-
         <div class="container-xl">
 
             <div class="row gy-4">
@@ -201,7 +200,6 @@
             </div>
 
         </div>
-
     </section>
 
     <!-- section main content -->
@@ -220,113 +218,11 @@
 
                     <div class="row gy-5">
                         {{-- item --}}
-                        <div class="col-lg-6 mb-2">
-                            <div class="card bd-card p-1 position-relative shadow-sm rounded bd-font">
-                                <a style="bottom: -16px; width:160px;"
-                                    class="btn btn-default shadow text-white position-absolute start-50 translate-middle-x rounded-5"
-                                    href="#">Read</a>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="fw-bolder">নিশোর সারপ্রাইজ দ্বিতীয় পর্ব</h5>
-                                            <p class="text-secondary mt-3">
-                                                প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
-                                                আপনি। যেভাবে বলবেন সেভাবেই আপনার পানি বের করে দিচ্ছি
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="font-size: 13px">
-                                        <div class="col-6 text-secondary">
-                                            by <span class="text-uppercase fw-bolder">khaalifa</span>
-                                        </div>
-                                        <div class="col-6 fw-bolder" style="text-align: end">
-                                            <p class="text-secondary"><span>i</span>156 view</p>
-                                        </div>
-                                    </div>
-                                </div>
+                        @foreach ($bests as $blog)
+                            <div class="col-lg-6 mb-2">
+                                <x-blog-main :blog="$blog" />
                             </div>
-                        </div>
-                        {{-- item --}}
-                        <div class="col-lg-6 mb-2">
-                            <div class="card bd-card p-1 position-relative shadow-sm rounded bd-font">
-                                <a style="bottom: -16px; width:160px;"
-                                    class="btn btn-default shadow text-white position-absolute start-50 translate-middle-x rounded-5"
-                                    href="#">Read</a>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="fw-bolder">নিশোর সারপ্রাইজ দ্বিতীয় পর্ব</h5>
-                                            <p class="text-secondary mt-3">
-                                                প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
-                                                আপনি। যেভাবে বলবেন সেভাবেই আপনার পানি বের করে দিচ্ছি
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="font-size: 13px">
-                                        <div class="col-6 text-secondary">
-                                            by <span class="text-uppercase fw-bolder">khaalifa</span>
-                                        </div>
-                                        <div class="col-6 fw-bolder" style="text-align: end">
-                                            <p class="text-secondary"><span>i</span>156 view</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- item --}}
-                        <div class="col-lg-6 mb-2">
-                            <div class="card bd-card p-1 position-relative shadow-sm rounded bd-font">
-                                <a style="bottom: -16px; width:160px;"
-                                    class="btn btn-default shadow text-white position-absolute start-50 translate-middle-x rounded-5"
-                                    href="#">Read</a>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="fw-bolder">নিশোর সারপ্রাইজ দ্বিতীয় পর্ব</h5>
-                                            <p class="text-secondary mt-3">
-                                                প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
-                                                আপনি। যেভাবে বলবেন সেভাবেই আপনার পানি বের করে দিচ্ছি
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="font-size: 13px">
-                                        <div class="col-6 text-secondary">
-                                            by <span class="text-uppercase fw-bolder">khaalifa</span>
-                                        </div>
-                                        <div class="col-6 fw-bolder" style="text-align: end">
-                                            <p class="text-secondary"><span>i</span>156 view</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- item --}}
-                        <div class="col-lg-6 mb-2">
-                            <div class="card bd-card p-1 position-relative shadow-sm rounded bd-font">
-                                <a style="bottom: -16px; width:160px;"
-                                    class="btn btn-default shadow text-white position-absolute start-50 translate-middle-x rounded-5"
-                                    href="#">Read</a>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="fw-bolder">নিশোর সারপ্রাইজ দ্বিতীয় পর্ব</h5>
-                                            <p class="text-secondary mt-3">
-                                                প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
-                                                আপনি। যেভাবে বলবেন সেভাবেই আপনার পানি বের করে দিচ্ছি
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="font-size: 13px">
-                                        <div class="col-6 text-secondary">
-                                            by <span class="text-uppercase fw-bolder">khaalifa</span>
-                                        </div>
-                                        <div class="col-6 fw-bolder" style="text-align: end">
-                                            <p class="text-secondary"><span>i</span>156 view</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
 
                     <div class="spacer" data-height="50"></div>
@@ -563,114 +459,11 @@
                     </div>
 
                     <div class="row gy-5">
-                        {{-- item --}}
-                        <div class="col-lg-6 mb-2">
-                            <div class="card bd-card p-1 position-relative shadow-sm rounded bd-font">
-                                <a style="bottom: -16px; width:160px;"
-                                    class="btn btn-default shadow text-white position-absolute start-50 translate-middle-x rounded-5"
-                                    href="#">Read</a>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="fw-bolder">নিশোর সারপ্রাইজ দ্বিতীয় পর্ব</h5>
-                                            <p class="text-secondary mt-3">
-                                                প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
-                                                আপনি। যেভাবে বলবেন সেভাবেই আপনার পানি বের করে দিচ্ছি
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="font-size: 13px">
-                                        <div class="col-6 text-secondary">
-                                            by <span class="text-uppercase fw-bolder">khaalifa</span>
-                                        </div>
-                                        <div class="col-6 fw-bolder" style="text-align: end">
-                                            <p class="text-secondary"><span>i</span>156 view</p>
-                                        </div>
-                                    </div>
-                                </div>
+                        @foreach ($recent as $blog)
+                            <div class="col-lg-6 mb-2">
+                                <x-blog-main :blog="$blog" />
                             </div>
-                        </div>
-                        {{-- item --}}
-                        <div class="col-lg-6 mb-2">
-                            <div class="card bd-card p-1 position-relative shadow-sm rounded bd-font">
-                                <a style="bottom: -16px; width:160px;"
-                                    class="btn btn-default shadow text-white position-absolute start-50 translate-middle-x rounded-5"
-                                    href="#">Read</a>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="fw-bolder">নিশোর সারপ্রাইজ দ্বিতীয় পর্ব</h5>
-                                            <p class="text-secondary mt-3">
-                                                প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
-                                                আপনি। যেভাবে বলবেন সেভাবেই আপনার পানি বের করে দিচ্ছি
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="font-size: 13px">
-                                        <div class="col-6 text-secondary">
-                                            by <span class="text-uppercase fw-bolder">khaalifa</span>
-                                        </div>
-                                        <div class="col-6 fw-bolder" style="text-align: end">
-                                            <p class="text-secondary"><span>i</span>156 view</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- item --}}
-                        <div class="col-lg-6 mb-2">
-                            <div class="card bd-card p-1 position-relative shadow-sm rounded bd-font">
-                                <a style="bottom: -16px; width:160px;"
-                                    class="btn btn-default shadow text-white position-absolute start-50 translate-middle-x rounded-5"
-                                    href="#">Read</a>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="fw-bolder">নিশোর সারপ্রাইজ দ্বিতীয় পর্ব</h5>
-                                            <p class="text-secondary mt-3">
-                                                প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
-                                                আপনি। যেভাবে বলবেন সেভাবেই আপনার পানি বের করে দিচ্ছি
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="font-size: 13px">
-                                        <div class="col-6 text-secondary">
-                                            by <span class="text-uppercase fw-bolder">khaalifa</span>
-                                        </div>
-                                        <div class="col-6 fw-bolder" style="text-align: end">
-                                            <p class="text-secondary"><span>i</span>156 view</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- item --}}
-                        <div class="col-lg-6 mb-2">
-                            <div class="card bd-card p-1 position-relative shadow-sm rounded bd-font">
-                                <a style="bottom: -16px; width:160px;"
-                                    class="btn btn-default shadow text-white position-absolute start-50 translate-middle-x rounded-5"
-                                    href="#">Read</a>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="fw-bolder">নিশোর সারপ্রাইজ দ্বিতীয় পর্ব</h5>
-                                            <p class="text-secondary mt-3">
-                                                প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
-                                                আপনি। যেভাবে বলবেন সেভাবেই আপনার পানি বের করে দিচ্ছি
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="font-size: 13px">
-                                        <div class="col-6 text-secondary">
-                                            by <span class="text-uppercase fw-bolder">khaalifa</span>
-                                        </div>
-                                        <div class="col-6 fw-bolder" style="text-align: end">
-                                            <p class="text-secondary"><span>i</span>156 view</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
 
                     <div class="spacer" data-height="50"></div>
@@ -791,12 +584,11 @@
                             </div>
                             <div class="widget-content">
                                 <ul class="list">
-                                    <li><a href="#">কুমারী</a><span>(5)</span></li>
-                                    <li><a href="#">পরিপক্ব</a><span>(2)</span></li>
-                                    <li><a href="#">গৃহবধূর</a><span>(4)</span></li>
-                                    <li><a href="#">স্বামী</a><span>(1)</span></li>
-                                    <li><a href="#">সেরা</a><span>(7)</span></li>
-                                    <li><a href="#">বান্ধবী</a><span>(3)</span></li>
+                                    @foreach ($cats as $cat)
+                                        <li><a
+                                                href="#">{{ $cat->name }}</a><span>({{ $cat->blogs ? $cat->blogs->count() : '0' }})</span>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
 
@@ -830,87 +622,33 @@
                             </div>
                             <div class="widget-content">
                                 <div class="post-carousel-widget">
-                                    <!-- post -->
-                                    <div class="card bd-card p-1 position-relative shadow-sm rounded bd-font">
-                                        {{-- <a style="bottom: -16px; width:160px;"
-                                            class="btn btn-default shadow text-white position-absolute start-50 translate-middle-x rounded-5"
-                                            href="#">Read</a> --}}
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5 class="fw-bolder" style="color: #C60B0D !important;">নিশোর
-                                                        সারপ্রাইজ দ্বিতীয়
-                                                        পর্ব</h5>
-                                                    <p class="text-secondary mt-3">
-                                                        প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
-                                                        আপনি। যেভাবে বলবেন সেভাবেই আপনার পানি বের করে দিচ্ছি
-                                                    </p>
+                                    @foreach ($recent as $blog)
+                                        <div class="card bd-card p-1 position-relative shadow-sm rounded bd-font">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <a href="{{ route('blog.view', $blog->slug) }}">
+                                                            <h5 class="fw-bolder" style="color: #C60B0D !important;">
+                                                                {{ $blog->title }}</h5>
+                                                        </a>
+                                                        <p class="text-secondary mt-3">{{ $blog->seo_description }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="row" style="font-size: 13px">
-                                                <div class="col-6 text-secondary">
-                                                    by <span class="text-uppercase fw-bolder">khaalifa</span>
-                                                </div>
-                                                <div class="col-6 fw-bolder" style="text-align: end">
-                                                    <p class="text-secondary"><span>i</span>156 view</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- post -->
-                                    <div class="card bd-card p-1 position-relative shadow-sm rounded bd-font">
-                                        {{-- <a style="bottom: -16px; width:160px;"
-                                            class="btn btn-default shadow text-white position-absolute start-50 translate-middle-x rounded-5"
-                                            href="#">Read</a> --}}
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5 class="fw-bolder" style="color: #C60B0D !important;">নিশোর
-                                                        সারপ্রাইজ দ্বিতীয়
-                                                        পর্ব</h5>
-                                                    <p class="text-secondary mt-3">
-                                                        প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
-                                                        আপনি। যেভাবে বলবেন সেভাবেই আপনার পানি বের করে দিচ্ছি
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="row" style="font-size: 13px">
-                                                <div class="col-6 text-secondary">
-                                                    by <span class="text-uppercase fw-bolder">khaalifa</span>
-                                                </div>
-                                                <div class="col-6 fw-bolder" style="text-align: end">
-                                                    <p class="text-secondary"><span>i</span>156 view</p>
+                                                <div class="row" style="font-size: 13px">
+                                                    <div class="col-6 text-secondary">
+                                                        by <span
+                                                            class="text-uppercase fw-bolder">{{ $blog->author }}</span>
+                                                    </div>
+                                                    <div class="col-6 fw-bolder" style="text-align: end">
+                                                        <p class="text-secondary"
+                                                            style="display: flex;justify-content: flex-end;"><img
+                                                                src="{{ asset('Themes/Theme1/images/eyebig.svg') }}"
+                                                                alt="">156 view</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- post -->
-                                    <div class="card bd-card p-1 position-relative shadow-sm rounded bd-font">
-                                        {{-- <a style="bottom: -16px; width:160px;"
-                                            class="btn btn-default shadow text-white position-absolute start-50 translate-middle-x rounded-5"
-                                            href="#">Read</a> --}}
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5 class="fw-bolder" style="color: #C60B0D !important;">নিশোর
-                                                        সারপ্রাইজ দ্বিতীয়
-                                                        পর্ব</h5>
-                                                    <p class="text-secondary mt-3">
-                                                        প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
-                                                        আপনি। যেভাবে বলবেন সেভাবেই আপনার পানি বের করে দিচ্ছি
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="row" style="font-size: 13px">
-                                                <div class="col-6 text-secondary">
-                                                    by <span class="text-uppercase fw-bolder">khaalifa</span>
-                                                </div>
-                                                <div class="col-6 fw-bolder" style="text-align: end">
-                                                    <p class="text-secondary"><span>i</span>156 view</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                                 <!-- carousel arrows -->
                                 <div class="slick-arrows-bot">

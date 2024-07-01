@@ -4,7 +4,7 @@
          <div class="container-xl">
              <!-- site logo -->
              <a class="navbar-brand" href="index.html"><img style="width: 120px"
-                     src="{{ asset('Themes/Theme1/images/logos/chotikotha.png') }}" alt="logo" /></a>
+                     src="{{ asset($config ? $config->logo : '') }}" alt="logo" /></a>
 
              <div class="collapse navbar-collapse">
                  <!-- menus -->

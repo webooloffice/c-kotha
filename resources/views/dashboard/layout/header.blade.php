@@ -203,8 +203,7 @@
                         <span class="nav-text">Settings</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li><a href="{{ route('config.index') }}">Add Configurations</a></li>
-                        <li><a href="{{ route('config.create') }}">View Configurations</a></li>
+                        <li><a href="{{ route('config.index') }}">Configurations</a></li>
                         <li><a href="{{ route('social.index') }}">Social Links</a></li>
                         <li><a href="{{ route('custom_code.index') }}">Custom Codes</a></li>
 

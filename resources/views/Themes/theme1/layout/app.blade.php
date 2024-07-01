@@ -1,12 +1,16 @@
+@php
+    use App\Models\Config;
+    $config = Config::where('status', 'active')->first();
+@endphp
 <!DOCTYPE html>
 <html lang="en-US">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Katen - Minimal Blog & Magazine HTML Theme</title>
+    <title>{{ $config ? $config->name : 'Home' }}</title>
     <meta name="description" content="Katen - Minimal Blog & Magazine HTML Theme">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('Themes/Theme1/images/logos/chotikotha-fav.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset($config ? $config->favicon : '') }}">
     <link href='https://fonts.googleapis.com/css?family=Anek Bangla' rel='stylesheet'>
     @include('Themes.theme1.layout.headerlink')
     @yield('style')

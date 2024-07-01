@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('address');
             $table->string('phone');
+            $table->string('url')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });

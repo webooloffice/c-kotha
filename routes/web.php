@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', [UserHomeController::class, 'index'])->name('home');
-Route::get('/blog-single', [BlogSingleController::class, 'index'])->name('blog-single');
+Route::get('/view/{id}', [BlogSingleController::class, 'index'])->name('blog.view');
 
 // Route::get('/dashboard', function() {
 //     return view('dashboard.index');

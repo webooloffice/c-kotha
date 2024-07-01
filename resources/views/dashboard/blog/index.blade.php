@@ -30,8 +30,10 @@
 
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label class="col-sm-3 col-form-label">Category Name</label>
-                                    <select name="category_id" class="form-control">
+                                    <label class="form-label ">Category Name
+                                        *</label>
+                                    <select name="category_id"
+                                        class="form-control @error('category_id') is-invalid @enderror">
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
@@ -43,8 +45,8 @@
                                 <div class="form-group col-md-6">
                                     <label class="col-sm-3 col-form-label">Author's Name</label>
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control" @error('author') is-invalid @enderror"
-                                            placeholder="Author's Name" name="author">
+                                        <input type="text" class="form-control @error('author') is-invalid @enderror"
+                                            placeholder="Author's Name" name="author" value="{{ old('author') }}">
                                         @error('author')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -52,11 +54,13 @@
                                         @enderror
                                     </div>
                                 </div>
+
                                 <div class="form-group col-md-6">
-                                    <label class="col-sm-3 col-form-label">Blog Title</label>
+                                    <label class="col-sm-3 col-form-label">Blog Title <span
+                                            class="required-tag">*</span></label>
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control" @error('title') is-invalid @enderror"
-                                            placeholder="Enter blog title" name="title">
+                                        <input type="text" class="form-control @error('title') is-invalid @enderror"
+                                            placeholder="Enter blog title" name="title" value="{{ old('title') }}">
                                         @error('title')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -66,42 +70,35 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="formFile" class="form-label">Image</label>
-                                    <input class="form-control" type="file" id="formFile"
-                                        @error('image') is-invalid @enderror" name="image">
+                                    <label for="formFile" class="form-label">Image </label>
+                                    <input class="form-control @error('image') is-invalid @enderror" type="file"
+                                        id="formFile" name="image" value="{{ old('image') }}">
                                     @error('image')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
+                                <div class="form-group col-md-6">
+                                    <label class="col-sm-3 col-form-label">Blog Part <span
+                                            style="font-size: 11px;font-style: italic">Alternate</span></label>
+                                    <select name="blog_id" class="form-control @error('blog_id') is-invalid @enderror">
+                                        <option value="">Select blog</option>
+                                        @foreach ($blogs as $blog)
+                                            <option value="{{ $blog->id }}">{{ $blog->slug }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
                                 <div class="form-group">
-                                    <label class="col-sm-3 col-form-label">Content</label>
-                                    <textarea id="summernote" @error('content') is-invalid @enderror" name="content"></textarea>
+                                    <label class="col-sm-3 col-form-label">Content <span
+                                            class="required-tag">*</span></label>
+                                    <textarea id="summernote" class="@error('content') is-invalid @enderror" name="content">{{ old('content') }}</textarea>
                                     @error('content')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                </div>
-
-                                <div class="form-group col-md-6">
-                                    <label class="col-sm-3 col-form-label">Status</label>
-                                    <div class="col-sm-9">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status" value="active"
-                                                checked>
-                                            <label class="form-check-label">
-                                                Active
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status" value="inactive">
-                                            <label class="form-check-label">
-                                                Inactive
-                                            </label>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -113,38 +110,52 @@
                         </div>
 
                         <div class="card-body">
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">SEO Title</label>
-                                <div class="col-sm-12">
-                                    <input type="text" class="form-control" @error('seo_title') is-invalid @enderror"
-                                        placeholder="Enter SEO title" name="seo_title">
-                                    @error('seo_title')
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="col-sm-3 col-form-label">slug <span class="required-tag">*</span></label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control @error('slug') is-invalid @enderror"
+                                            placeholder="blog slug" name="slug" value="{{ old('slug') }}">
+                                        @error('slug')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="col-sm-3 col-form-label">SEO Title</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" placeholder="Title" name="seo_title"
+                                            value="{{ old('seo_title') }}">
+                                        @error('seo_title')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="col-sm-3 col-form-label">SEO Description</label>
+                                    <textarea class="form-control" rows="5" @error('seo_description') is-invalid @enderror" name="seo_description"
+                                        placeholder="Write description" is-invalid>{{ old('seo_title') }}</textarea>
+                                    @error('seo_description')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">SEO Description</label>
-                                <textarea class="from-control" rows="5" @error('seo_description') is-invalid @enderror" name="seo_description"></textarea>
-                                @error('seo_description')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">SEO Tags</label>
-                                <div class="col-sm-12">
-                                    <input type="text" class="form-control" @error('seo_tags') is-invalid @enderror"
-                                        placeholder="Enter SEO tags" name="seo_tags">
-                                    @error('seo_tags')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                <div class="form-group col-md-6">
+                                    <label class="col-sm-3 col-form-label">SEO Tags</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" placeholder="Tags" name="seo_tags"
+                                            value="{{ old('seo_tags') }}">
+                                        @error('seo_tags')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                         </div>

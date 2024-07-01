@@ -79,6 +79,10 @@ img {
   z-index: 1031;
 }
 
+.required-tag{
+    font-size: 12px;
+    color: #f35f61 !important;
+}
 .book {
   --color: #C60B0D;
   --duration: 6.8s;

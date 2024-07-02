@@ -2205,7 +2205,7 @@ footer .footer-inner .copyright {
 }
 .search-popup .search-content {
   position: absolute;
-  top: 40%;
+  top: 15%;
   left: 50%;
   width: 650px;
   -webkit-transform: translate(-50%, -50%);

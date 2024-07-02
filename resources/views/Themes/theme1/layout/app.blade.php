@@ -1,6 +1,8 @@
 @php
     use App\Models\Config;
+    use App\Models\Category;
     $config = Config::where('status', 'active')->first();
+    $categories = Category::where('status', 'active')->get();
 @endphp
 <!DOCTYPE html>
 <html lang="en-US">
@@ -56,6 +58,36 @@
         </div>
     </div>
 
+    {{-- Search pop --}}
+    <div class="search-popup">
+        <!-- close button -->
+        <button type="button" class="btn-close" aria-label="Close"></button>
+        <!-- content -->
+        <div class="search-content">
+            <div class="text-center">
+                <h3 class="mb-4 mt-0">Press ESC to close</h3>
+            </div>
+            <!-- form -->
+            <form class="d-flex search-form">
+                <input class="form-control me-2 live-search" type="search" placeholder="Search and press enter ..."
+                    aria-label="Search">
+                <button class="btn btn-default btn-lg" type="button"><i class="icon-magnifier"></i></button>
+            </form>
+
+            <div class="container mt-3" id="search_content">
+                <!-- post -->
+                <div class="post post-list-sm circle" style="border-bottom: 1px solid #cbcbcb">
+                    <h6 class="my-0 bd-font fw-bolder"><a href="" style="color: #203656">অল্প বয়স থেকেই আমার
+                            ব্যবসা করার ইচ্ছা</a></h6>
+                    <ul class="meta list-inline mt-1 mb-0">
+                        <li class="list-inline-item">12 Jun 24</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <!-- site wrapper -->
     <div class="site-wrapper">
 
@@ -81,35 +113,25 @@
 
         <!-- logo -->
         <div class="logo">
-            <img src="images/logo.svg" alt="Katen" />
+            <img src="{{ asset($config ? $config->logo : '') }}" alt="Katen" />
         </div>
 
         <!-- menu -->
         <nav>
             <ul class="vertical-menu">
                 <li class="active">
-                    <a href="index.html">Home</a>
+                    <a href="#">চটি গল্প</a>
                     <ul class="submenu">
-                        <li><a href="index.html">Magazine</a></li>
-                        <li><a href="personal.html">Personal</a></li>
-                        <li><a href="personal-alt.html">Personal Alt</a></li>
-                        <li><a href="minimal.html">Minimal</a></li>
-                        <li><a href="classic.html">Classic</a></li>
+                        @foreach ($categories as $category)
+                            <li><a class="dropdown-item"
+                                    href="{{ route('category.view', $category->slug) }}">{{ $category->name }}</a>
+                            </li>
+                        @endforeach
                     </ul>
                 </li>
-                <li><a href="category.html">Lifestyle</a></li>
-                <li><a href="category.html">Inspiration</a></li>
-                <li>
-                    <a href="#">Pages</a>
-                    <ul class="submenu">
-                        <li><a href="category.html">Category</a></li>
-                        <li><a href="blog-single.html">Blog Single</a></li>
-                        <li><a href="blog-single-alt.html">Blog Single Alt</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
                 </li>
-                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
 
@@ -126,6 +148,33 @@
     @include('Themes.theme1.layout.footer')
     @yield('scripts')
     @include('Themes.theme1.layout.footerlink')
+    <script>
+        $(document).ready(function() {
+
+
+            let x = $('.live-search').on('input', function() {
+                var query = $(this).val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "{{ route('search') }}",
+                    type: "GET",
+                    data: {
+                        search: query,
+                    },
+                    success: function(response) {
+                        console.log(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

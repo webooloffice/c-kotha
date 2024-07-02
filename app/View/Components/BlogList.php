@@ -11,9 +11,10 @@ class BlogList extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
-    {
-        //
+    public function __construct(
+        public $blog,
+        public $key
+    ) {
     }
 
     /**

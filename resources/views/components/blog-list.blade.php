@@ -1,17 +1,17 @@
+<!-- post -->
 <div class="post post-list-sm circle">
     <div class="thumb circle">
-        <a href="blog-single.html">
+        <a href="{{ route('blog.view', $blog->slug) }}">
             <div class="inner">
-                <span class="inner-text bd-font">১</span>
+                <span class="inner-text bd-font">{{ $key }}</span>
             </div>
         </a>
     </div>
     <div class="details clearfix">
-        <h6 class="post-title my-0"><a href="blog-single.html">নিশোর সারপ্রাইজ দ্বিতীয়
-                পর্ব
-                নিশোর </a></h6>
+        <h6 class="my-0 bd-font fw-bolder"><a href="{{ route('blog.view', $blog->slug) }}"
+                style="color: #203656">{{ $blog->title }}</a></h6>
         <ul class="meta list-inline mt-1 mb-0">
-            <li class="list-inline-item">29 March 2021</li>
+            <li class="list-inline-item">{{ $blog->gettingDate() }}</li>
         </ul>
     </div>
 </div>

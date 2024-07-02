@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col">
                 <a href="{{ route('blog.view', $blog->slug) }}">
-                    <h5 class="fw-bolder">{{ $blog->title }}</h5>
+                    <h5 class="fw-bolder bd-font">{{ $blog->title }}</h5>
                 </a>
                 <p class="text-secondary mt-3">
                     {{ $blog->seo_description }}

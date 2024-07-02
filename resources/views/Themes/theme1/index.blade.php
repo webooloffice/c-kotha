@@ -1,3 +1,11 @@
+@php
+    function convert_to_bengali($number)
+    {
+        $englishDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        $bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+        return str_replace($englishDigits, $bengaliDigits, $number);
+    }
+@endphp
 @extends('Themes.theme1.layout.app')
 
 @section('content')
@@ -13,8 +21,8 @@
                     <!-- featured post large -->
                     <div class="post featured-post-lg">
                         <div class="details clearfix">
-                            <a href="category.html" class="category-badge bd-font">সারপ্রাইজ</a>
-                            <h2 class="post-title bd-font" style="letter-spacing: 2px;"><a href="blog-single.html">নিশোর
+                            <a href="#" class="category-badge bd-font">সারপ্রাইজ</a>
+                            <h2 class="post-title bd-font" style="letter-spacing: 2px;"><a href="#">নিশোর
                                     সারপ্রাইজ দ্বিতীয় পর্ব বউকে
                                     ন্যাংটো দিলাম পর্ব ১</a>
                             </h2>
@@ -23,7 +31,7 @@
                                 <li class="list-inline-item">29 March 2021</li>
                             </ul>
                         </div>
-                        <a href="blog-single.html">
+                        <a href="#">
                             <div class="thumb rounded">
                                 <div class="inner data-bg-image" data-bg-image="images/posts/featured-lg.jpg"></div>
                             </div>
@@ -52,146 +60,15 @@
                             <!-- popular posts -->
                             <div aria-labelledby="popular-tab" class="tab-pane fade show active" id="popular"
                                 role="tabpanel">
-                                <!-- post -->
-                                <div class="post post-list-sm circle">
-                                    <div class="thumb circle">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <span class="inner-text bd-font">১</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">নিশোর সারপ্রাইজ দ্বিতীয় পর্ব
-                                                নিশোর </a></h6>
-                                        <ul class="meta list-inline mt-1 mb-0">
-                                            <li class="list-inline-item">29 March 2021</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- post -->
-                                <div class="post post-list-sm circle">
-                                    <div class="thumb circle">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <span class="inner-text bd-font">২</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">সারপ্রাইজ দ্বিতীয় পর্ব
-                                                নিশোর</a></h6>
-                                        <ul class="meta list-inline mt-1 mb-0">
-                                            <li class="list-inline-item">29 March 2021</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- post -->
-                                <div class="post post-list-sm circle">
-                                    <div class="thumb circle">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <span class="inner-text bd-font">৩</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">দ্বিতীয় সারপ্রাইজ পর্ব
-                                                নিশোর</a></h6>
-                                        <ul class="meta list-inline mt-1 mb-0">
-                                            <li class="list-inline-item">29 March 2021</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- post -->
-                                <div class="post post-list-sm circle">
-                                    <div class="thumb circle">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <span class="inner-text bd-font">৪</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">নিশোর সারপ্রাইজ দ্বিতীয়
-                                                পর্ব</a></h6>
-                                        <ul class="meta list-inline mt-1 mb-0">
-                                            <li class="list-inline-item">29 March 2021</li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                @foreach ($bests as $key => $blog)
+                                    <x-blog-list :blog="$blog" key="{{ convert_to_bengali($key + 1) }}" />
+                                @endforeach
                             </div>
                             <!-- recent posts -->
                             <div aria-labelledby="recent-tab" class="tab-pane fade" id="recent" role="tabpanel">
-                                <!-- post -->
-                                <div class="post post-list-sm circle">
-                                    <div class="thumb circle">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <span class="inner-text bd-font">১</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">নিশোর সারপ্রাইজ দ্বিতীয়
-                                                পর্ব
-                                                নিশোর </a></h6>
-                                        <ul class="meta list-inline mt-1 mb-0">
-                                            <li class="list-inline-item">29 March 2021</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- post -->
-                                <div class="post post-list-sm circle">
-                                    <div class="thumb circle">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <span class="inner-text bd-font">২</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">সারপ্রাইজ দ্বিতীয় পর্ব
-                                                নিশোর</a></h6>
-                                        <ul class="meta list-inline mt-1 mb-0">
-                                            <li class="list-inline-item">29 March 2021</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- post -->
-                                <div class="post post-list-sm circle">
-                                    <div class="thumb circle">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <span class="inner-text bd-font">৩</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">দ্বিতীয় সারপ্রাইজ পর্ব
-                                                নিশোর</a></h6>
-                                        <ul class="meta list-inline mt-1 mb-0">
-                                            <li class="list-inline-item">29 March 2021</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- post -->
-                                <div class="post post-list-sm circle">
-                                    <div class="thumb circle">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <span class="inner-text bd-font">৪</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">নিশোর সারপ্রাইজ দ্বিতীয়
-                                                পর্ব</a></h6>
-                                        <ul class="meta list-inline mt-1 mb-0">
-                                            <li class="list-inline-item">29 March 2021</li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                @foreach ($recent as $key => $blog)
+                                    <x-blog-list :blog="$blog" key="{{ convert_to_bengali($key + 1) }}" />
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -238,128 +115,25 @@
                     <div class="spacer" data-height="50"></div>
 
                     <!-- section header -->
-                    <div class="section-header">
-                        <h3 class="section-title">বিখ্যাত</h3>
-                        <img src="{{ asset('Themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
-                    </div>
+                    {{-- <div class="section-header">
+                            <h3 class="section-title">বিখ্যাত</h3>
+                                <img src="{{ asset('Themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
+                            </div>
 
-                    <div class="row gy-5">
-                        {{-- item --}}
-                        <div class="col-lg-6 mb-2">
-                            <div class="card bd-card p-1 position-relative shadow-sm rounded bd-font">
-                                <a style="bottom: -16px; width:160px;"
-                                    class="btn btn-default shadow text-white position-absolute start-50 translate-middle-x rounded-5"
-                                    href="#">Read</a>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="fw-bolder">নিশোর সারপ্রাইজ দ্বিতীয় পর্ব</h5>
-                                            <p class="text-secondary mt-3">
-                                                প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
-                                                আপনি। যেভাবে বলবেন সেভাবেই আপনার পানি বের করে দিচ্ছি
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="font-size: 13px">
-                                        <div class="col-6 text-secondary">
-                                            by <span class="text-uppercase fw-bolder">khaalifa</span>
-                                        </div>
-                                        <div class="col-6 fw-bolder" style="text-align: end">
-                                            <p class="text-secondary"><span>i</span>156 view</p>
-                                        </div>
-                                    </div>
+                            <div class="row gy-5">
+                            @foreach ($bests as $blog)
+                                <div class="col-lg-6 mb-2">
+                                    <x-blog-main :blog="$blog" />
                                 </div>
-                            </div>
-                        </div>
-                        {{-- item --}}
-                        <div class="col-lg-6 mb-2">
-                            <div class="card bd-card p-1 position-relative shadow-sm rounded bd-font">
-                                <a style="bottom: -16px; width:160px;"
-                                    class="btn btn-default shadow text-white position-absolute start-50 translate-middle-x rounded-5"
-                                    href="#">Read</a>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="fw-bolder">নিশোর সারপ্রাইজ দ্বিতীয় পর্ব</h5>
-                                            <p class="text-secondary mt-3">
-                                                প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
-                                                আপনি। যেভাবে বলবেন সেভাবেই আপনার পানি বের করে দিচ্ছি
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="font-size: 13px">
-                                        <div class="col-6 text-secondary">
-                                            by <span class="text-uppercase fw-bolder">khaalifa</span>
-                                        </div>
-                                        <div class="col-6 fw-bolder" style="text-align: end">
-                                            <p class="text-secondary"><span>i</span>156 view</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- item --}}
-                        <div class="col-lg-6 mb-2">
-                            <div class="card bd-card p-1 position-relative shadow-sm rounded bd-font">
-                                <a style="bottom: -16px; width:160px;"
-                                    class="btn btn-default shadow text-white position-absolute start-50 translate-middle-x rounded-5"
-                                    href="#">Read</a>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="fw-bolder">নিশোর সারপ্রাইজ দ্বিতীয় পর্ব</h5>
-                                            <p class="text-secondary mt-3">
-                                                প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
-                                                আপনি। যেভাবে বলবেন সেভাবেই আপনার পানি বের করে দিচ্ছি
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="font-size: 13px">
-                                        <div class="col-6 text-secondary">
-                                            by <span class="text-uppercase fw-bolder">khaalifa</span>
-                                        </div>
-                                        <div class="col-6 fw-bolder" style="text-align: end">
-                                            <p class="text-secondary"><span>i</span>156 view</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- item --}}
-                        <div class="col-lg-6 mb-2">
-                            <div class="card bd-card p-1 position-relative shadow-sm rounded bd-font">
-                                <a style="bottom: -16px; width:160px;"
-                                    class="btn btn-default shadow text-white position-absolute start-50 translate-middle-x rounded-5"
-                                    href="#">Read</a>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="fw-bolder">নিশোর সারপ্রাইজ দ্বিতীয় পর্ব</h5>
-                                            <p class="text-secondary mt-3">
-                                                প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
-                                                আপনি। যেভাবে বলবেন সেভাবেই আপনার পানি বের করে দিচ্ছি
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="font-size: 13px">
-                                        <div class="col-6 text-secondary">
-                                            by <span class="text-uppercase fw-bolder">khaalifa</span>
-                                        </div>
-                                        <div class="col-6 fw-bolder" style="text-align: end">
-                                            <p class="text-secondary"><span>i</span>156 view</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                            @endforeach
+                        </div> --}}
 
 
                     <div class="spacer" data-height="50"></div>
 
                     <!-- section header -->
                     <div class="section-header">
-                        <h3 class="section-title">অনুপ্রেরণা</h3>
+                        <h3 class="section-title bd-font">অনুপ্রেরণা</h3>
                         <img src="{{ asset('themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
                         <div class="slick-arrows-top">
                             <button type="button" data-role="none" class="carousel-topNav-prev slick-custom-buttons"
@@ -378,7 +152,8 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <h5 class="fw-bolder" style="color: #C60B0D !important;">নিশোর সারপ্রাইজ দ্বিতীয়
+                                        <h5 class="fw-bolder bd-font" style="color: #C60B0D !important;">নিশোর সারপ্রাইজ
+                                            দ্বিতীয়
                                             পর্ব</h5>
                                         <p class="text-secondary mt-3">
                                             প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
@@ -404,7 +179,8 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <h5 class="fw-bolder" style="color: #C60B0D !important;">নিশোর সারপ্রাইজ দ্বিতীয়
+                                        <h5 class="fw-bolder bd-font" style="color: #C60B0D !important;">নিশোর সারপ্রাইজ
+                                            দ্বিতীয়
                                             পর্ব</h5>
                                         <p class="text-secondary mt-3">
                                             প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
@@ -430,7 +206,8 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <h5 class="fw-bolder" style="color: #C60B0D !important;">নিশোর সারপ্রাইজ দ্বিতীয়
+                                        <h5 class="fw-bolder bd-font" style="color: #C60B0D !important;">নিশোর সারপ্রাইজ
+                                            দ্বিতীয়
                                             পর্ব</h5>
                                         <p class="text-secondary mt-3">
                                             প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
@@ -454,8 +231,11 @@
 
                     <!-- section header -->
                     <div class="section-header">
-                        <h3 class="section-title">নতুন</h3>
+                        <h3 class="section-title bd-font">নতুন</h3>
                         <img src="{{ asset('Themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
+                        <div class="slick-arrows-top">
+                            <a href="#" class="btn btn-sm btn-default">View all</a>
+                        </div>
                     </div>
 
                     <div class="row gy-5">
@@ -465,12 +245,9 @@
                             </div>
                         @endforeach
                     </div>
-
-                    <div class="spacer" data-height="50"></div>
                 </div>
 
                 <div class="col-lg-4">
-
                     <!-- sidebar -->
                     <div class="sidebar">
                         <!-- widget about -->
@@ -504,89 +281,23 @@
                                 <img src="{{ asset('themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
                             </div>
                             <div class="widget-content">
-                                <!-- post -->
-                                <div class="post post-list-sm circle">
-                                    <div class="thumb circle">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <span class="inner-text bd-font">১</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">নিশোর সারপ্রাইজ দ্বিতীয়
-                                                পর্ব
-                                                নিশোর </a></h6>
-                                        <ul class="meta list-inline mt-1 mb-0">
-                                            <li class="list-inline-item">29 March 2021</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- post -->
-                                <div class="post post-list-sm circle">
-                                    <div class="thumb circle">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <span class="inner-text bd-font">২</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">সারপ্রাইজ দ্বিতীয় পর্ব
-                                                নিশোর</a></h6>
-                                        <ul class="meta list-inline mt-1 mb-0">
-                                            <li class="list-inline-item">29 March 2021</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- post -->
-                                <div class="post post-list-sm circle">
-                                    <div class="thumb circle">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <span class="inner-text bd-font">৩</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">দ্বিতীয় সারপ্রাইজ পর্ব
-                                                নিশোর</a></h6>
-                                        <ul class="meta list-inline mt-1 mb-0">
-                                            <li class="list-inline-item">29 March 2021</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- post -->
-                                <div class="post post-list-sm circle">
-                                    <div class="thumb circle">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <span class="inner-text bd-font">৪</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">নিশোর সারপ্রাইজ দ্বিতীয়
-                                                পর্ব</a></h6>
-                                        <ul class="meta list-inline mt-1 mb-0">
-                                            <li class="list-inline-item">29 March 2021</li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                @foreach ($bests as $key => $blog)
+                                    <x-blog-list :blog="$blog" key="{{ convert_to_bengali($key + 1) }}" />
+                                @endforeach
                             </div>
                         </div>
 
                         <!-- widget categories -->
                         <div class="widget rounded bd-font">
                             <div class="widget-header text-center">
-                                <h3 class="widget-title">বিভাগ</h3>
+                                <h3 class="widget-title bd-font">বিভাগ</h3>
                                 <img src="{{ asset('themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
                             </div>
                             <div class="widget-content">
                                 <ul class="list">
                                     @foreach ($cats as $cat)
                                         <li><a
-                                                href="#">{{ $cat->name }}</a><span>({{ $cat->blogs ? $cat->blogs->count() : '0' }})</span>
+                                                href="{{ route('category.view', $cat->slug) }}">{{ $cat->name }}</a><span>({{ $cat->blogs ? $cat->blogs->count() : '0' }})</span>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -628,7 +339,8 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <a href="{{ route('blog.view', $blog->slug) }}">
-                                                            <h5 class="fw-bolder" style="color: #C60B0D !important;">
+                                                            <h5 class="fw-bolder bd-font"
+                                                                style="color: #C60B0D !important;">
                                                                 {{ $blog->title }}</h5>
                                                         </a>
                                                         <p class="text-secondary mt-3">{{ $blog->seo_description }}</p>
@@ -671,52 +383,9 @@
                         </div>
 
                     </div>
-
                 </div>
-
             </div>
 
         </div>
     </section>
-
-    <!-- instagram feed -->
-    {{-- <div class="instagram">
-        <div class="container-xl">
-            <!-- button -->
-            <a href="#" class="btn btn-default btn-instagram">@Katen on Instagram</a>
-            <!-- images -->
-            <div class="instagram-feed d-flex flex-wrap">
-                <div class="insta-item col-sm-2 col-6 col-md-2">
-                    <a href="#">
-                        <img src="images/insta/insta-1.jpg" alt="insta-title" />
-                    </a>
-                </div>
-                <div class="insta-item col-sm-2 col-6 col-md-2">
-                    <a href="#">
-                        <img src="images/insta/insta-2.jpg" alt="insta-title" />
-                    </a>
-                </div>
-                <div class="insta-item col-sm-2 col-6 col-md-2">
-                    <a href="#">
-                        <img src="images/insta/insta-3.jpg" alt="insta-title" />
-                    </a>
-                </div>
-                <div class="insta-item col-sm-2 col-6 col-md-2">
-                    <a href="#">
-                        <img src="images/insta/insta-4.jpg" alt="insta-title" />
-                    </a>
-                </div>
-                <div class="insta-item col-sm-2 col-6 col-md-2">
-                    <a href="#">
-                        <img src="images/insta/insta-5.jpg" alt="insta-title" />
-                    </a>
-                </div>
-                <div class="insta-item col-sm-2 col-6 col-md-2">
-                    <a href="#">
-                        <img src="images/insta/insta-6.jpg" alt="insta-title" />
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 @endsection

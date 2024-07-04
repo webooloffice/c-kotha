@@ -13,7 +13,7 @@
                          <a class="nav-link" href="category">চটি ম্যাসেজ</a>
                      </li> --}}
                      <li class="nav-item dropdown">
-                         <a class="nav-link dropdown-toggle" href="#">চটি গল্প</a>
+                         <a class="nav-link dropdown-toggle" href="#">গল্প</a>
                          <ul class="dropdown-menu">
                              @foreach ($categories as $category)
                                  <li><a class="dropdown-item"

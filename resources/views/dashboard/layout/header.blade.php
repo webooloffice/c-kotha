@@ -206,6 +206,7 @@
                         <li><a href="{{ route('config.index') }}">Configurations</a></li>
                         <li><a href="{{ route('social.index') }}">Social Links</a></li>
                         <li><a href="{{ route('custom_code.index') }}">Custom Codes</a></li>
+                        <li><a href="{{ route('sitemap') }}">Site map generate</a></li>
 
                     </ul>
                 </li>

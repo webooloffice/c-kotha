@@ -10,7 +10,7 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $searchTerm = $request->search;
-        $results = Blog::where(function ($query) use ($searchTerm) {
+        $results = Blog::select('id', 'title', 'created_at', 'slug')->where(function ($query) use ($searchTerm) {
             $query->where('title', 'like', '%' . $searchTerm . '%')
                 ->orWhere('seo_tags', 'like', '%' . $searchTerm . '%');
         })->take(12)

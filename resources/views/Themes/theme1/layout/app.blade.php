@@ -9,20 +9,16 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>{{ $config ? $config->name : 'Home' }}</title>
-    <meta name="description" content="Katen - Minimal Blog & Magazine HTML Theme">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    {!! SEOMeta::generate() !!}
+    {!! OpenGraph::generate() !!}
+    {!! Twitter::generate() !!}
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset($config ? $config->favicon : '') }}">
     <link href='https://fonts.googleapis.com/css?family=Anek Bangla' rel='stylesheet'>
     @include('Themes.theme1.layout.headerlink')
+    {!! JsonLd::generate() !!}
     @yield('style')
-    {{-- this is for custom codes --}}
     @include('Themes.theme1.layout.header')
-    {{-- <style>
-        .mainColor {
-            linear-gradient(to right, #C60B0D 0%, #FD0E10 100%)
-        }
-    </style> --}}
 </head>
 
 <body class="bd-font">

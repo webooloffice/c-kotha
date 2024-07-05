@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\BlogParts;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -15,10 +16,10 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blog = Blog::all();
+        $blog = Blog::select('id', 'slug')->get();
         $category = Category::all();
         return view('dashboard.blog.index', [
-            'blog'          => $blog,
+            'blogs'         => $blog,
             'categories'    => $category,
         ]);
     }
@@ -41,32 +42,41 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-
+        //dd($request->all());
         $request->validate([
+            'category_id'       => 'required',
             'title'             => 'required',
             'author'            => 'required',
             'content'           => 'required',
-            'seo_title'         => 'required',
-            'seo_description'   => 'required',
-            'seo_tags'          => 'required',
-            'image'             => 'required|image|mimes:jpeg,png,jpg,webp,jfif|max:2048',
+            'slug'             => 'required|unique:blogs',
         ]);
 
+        // try {
         $blog = new Blog();
 
         $blog->category_id      = $request->category_id;
         $blog->author           = $request->author;
         $blog->title            = $request->title;
         $blog->content          = $request->content;
-        $blog->image            = Self::upload($request);
+        $blog->image            = $request->has('image') ? Self::upload($request) : '';
         $blog->seo_title        = $request->seo_title;
         $blog->seo_description  = $request->seo_description;
         $blog->seo_tags         = $request->seo_tags;
-        $blog->status           = $request->status;
-        $blog->slug             = Str::slug($request->title, '-');
+        $blog->slug             = $request->slug != null ? $request->slug : Str::slug($request->title, '-');
         $blog->save();
-        return back()->with('success', 'Blog created successfully');
 
+
+        if ($request->blog_id != null) {
+            $part = new BlogParts();
+            $part->blog_id = $request->blog_id;
+            $part->part_id = $blog->id;
+            $part->save();
+        }
+
+        return back()->with('success', 'Blog created successfully');
+        // } catch (\Throwable $th) {
+        //     return back()->with('success', "Something is wrong with, $th");
+        // }
     }
 
     /**
@@ -131,7 +141,6 @@ class BlogController extends Controller
         }
         $blog->save();
         return back()->with('success', 'Blog updated successfully');
-
     }
 
     /**
@@ -144,8 +153,9 @@ class BlogController extends Controller
         return back()->with('danger', 'Blog deleted!!');
     }
 
-    static function upload($request){
-        $imageName ='dashboards/Theme1/images/blog/'. time() . '.' . $request->image->extension();
+    static function upload($request)
+    {
+        $imageName = 'dashboards/Theme1/images/blog/' . time() . '.' . $request->image->extension();
         $request->image->move(public_path('dashboards/Theme1/images/blog'), $imageName);
         return $imageName;
     }

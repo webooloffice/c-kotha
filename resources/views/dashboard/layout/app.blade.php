@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @php
-    $config = App\Models\Config::first();
+    $config = App\Models\Config::where('status', 'active')->first();
 @endphp
 
 <head>

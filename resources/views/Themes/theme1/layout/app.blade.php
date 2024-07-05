@@ -1,22 +1,25 @@
+@php
+    use App\Models\Config;
+    use App\Models\Category;
+    $config = Config::where('status', 'active')->first();
+    $categories = Category::where('status', 'active')->get();
+@endphp
 <!DOCTYPE html>
 <html lang="en-US">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Katen - Minimal Blog & Magazine HTML Theme</title>
-    <meta name="description" content="Katen - Minimal Blog & Magazine HTML Theme">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('Themes/Theme1/images/logos/chotikotha-fav.png') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    {{-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> --}}
+    {!! SEOMeta::generate() !!}
+    {!! OpenGraph::generate() !!}
+    {!! Twitter::generate() !!}
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset($config ? $config->favicon : '') }}">
     <link href='https://fonts.googleapis.com/css?family=Anek Bangla' rel='stylesheet'>
     @include('Themes.theme1.layout.headerlink')
+    {!! JsonLd::generate() !!}
     @yield('style')
-    {{-- this is for custom codes --}}
     @include('Themes.theme1.layout.header')
-    {{-- <style>
-        .mainColor {
-            linear-gradient(to right, #C60B0D 0%, #FD0E10 100%)
-        }
-    </style> --}}
 </head>
 
 <body class="bd-font">
@@ -52,6 +55,28 @@
         </div>
     </div>
 
+    {{-- Search pop --}}
+    <div class="search-popup">
+        <!-- close button -->
+        <button type="button" class="btn-close" aria-label="Close"></button>
+        <!-- content -->
+        <div class="container">
+            <div class="text-center mt-5">
+                <h3 class="mb-4 mt-0">Press ESC to close</h3>
+            </div>
+            <!-- form -->
+            <form class="d-flex search-form">
+                <input class="form-control me-2 live-search" type="search" placeholder="Search and press enter ..."
+                    aria-label="Search">
+                <button class="btn btn-default btn-lg" type="button"><i class="icon-magnifier"></i></button>
+            </form>
+
+            <div class="container mt-3" id="search_content">
+
+            </div>
+        </div>
+    </div>
+
     <!-- site wrapper -->
     <div class="site-wrapper">
 
@@ -77,35 +102,36 @@
 
         <!-- logo -->
         <div class="logo">
-            <img src="images/logo.svg" alt="Katen" />
+            <img src="{{ asset($config ? $config->logo : '') }}" alt="Katen" />
         </div>
 
         <!-- menu -->
         <nav>
             <ul class="vertical-menu">
                 <li class="active">
-                    <a href="index.html">Home</a>
+                    <a href="#">চটি গল্প</a>
                     <ul class="submenu">
-                        <li><a href="index.html">Magazine</a></li>
-                        <li><a href="personal.html">Personal</a></li>
-                        <li><a href="personal-alt.html">Personal Alt</a></li>
-                        <li><a href="minimal.html">Minimal</a></li>
-                        <li><a href="classic.html">Classic</a></li>
+                        @foreach ($categories as $category)
+                            <li><a class="dropdown-item"
+                                    href="{{ route('category.view', $category->slug) }}">{{ $category->name }}</a>
+                            </li>
+                        @endforeach
                     </ul>
                 </li>
-                <li><a href="category.html">Lifestyle</a></li>
-                <li><a href="category.html">Inspiration</a></li>
-                <li>
-                    <a href="#">Pages</a>
-                    <ul class="submenu">
-                        <li><a href="category.html">Category</a></li>
-                        <li><a href="blog-single.html">Blog Single</a></li>
-                        <li><a href="blog-single-alt.html">Blog Single Alt</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
+                <li class="nav-item">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Share Story</a>
                 </li>
-                <li><a href="contact.html">Contact</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('about') }}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('privacy') }}">Privacy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('contact') }}">Contact</a>
+                </li>
+                </li>
             </ul>
         </nav>
 
@@ -122,6 +148,67 @@
     @include('Themes.theme1.layout.footer')
     @yield('scripts')
     @include('Themes.theme1.layout.footerlink')
+    <script>
+        $(document).ready(function() {
+
+
+            let x = $('.live-search').on('input', function() {
+                var query = $(this).val();
+                const container = document.getElementById('search_content');
+                container.innerHTML = '';
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "{{ route('search') }}",
+                    type: "GET",
+                    data: {
+                        search: query,
+                    },
+                    success: function(response) {
+                        response.data.forEach(post => {
+                            // Create the row element
+                            const rowElement = document.createElement('div');
+                            rowElement.className = 'row mb-3';
+
+                            // Create the title element
+                            const titleElement = document.createElement('h6');
+                            titleElement.className = 'my-0 bd-font fw-bolder';
+                            const titleLink = document.createElement('a');
+                            titleLink.href = `/post/${post.slug}`;
+                            titleLink.textContent = post.title;
+                            titleLink.style.color = '#203656';
+                            titleElement.appendChild(titleLink);
+
+                            // Create the meta element
+                            const metaElement = document.createElement('ul');
+                            metaElement.className = 'meta list-inline mt-1 mb-0';
+                            const dateItem = document.createElement('li');
+                            dateItem.className = 'list-inline-item';
+                            dateItem.textContent = new Date(post.created_at)
+                                .toLocaleDateString('bn-BD', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric'
+                                });
+                            metaElement.appendChild(dateItem);
+
+                            // Append the title and meta to the row element
+                            rowElement.appendChild(titleElement);
+                            rowElement.appendChild(metaElement);
+                            // Append the row element to the container
+                            container.appendChild(rowElement);
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

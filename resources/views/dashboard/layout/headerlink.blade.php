@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {{-- {{ asset('dashboards/Theme1/ --}}
 <!-- Title -->
-<title></title>
+<title>{{ $config ? $config->name : '' }}</title>
 <!-- Favicon icon -->
 @if ($config)
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url('/' . $config->favicon) }}">

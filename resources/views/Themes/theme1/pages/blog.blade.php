@@ -1,6 +1,4 @@
 @php
-    $tags = explode(',', $blog->seo_tags);
-
     function convert_to_bengali($number)
     {
         $englishDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -16,121 +14,28 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-items"><a href="#">Home</a></li><span class="breadcrumb-breaker">/</span>
-                    <li class="breadcrumb-items"><a href="#">Inspiration</a></li><span
-                        class="breadcrumb-breaker">/</span>
-                    <li class="breadcrumb-items active" aria-current="page">{{ $blog->title }}</li>
+                    <li class="breadcrumb-items"><a href="#">Blog</a></li><span class="breadcrumb-breaker">/</span>
                 </ol>
             </nav>
 
             <div class="row gy-4">
-
                 <div class="col-lg-8">
-                    <!-- post single -->
-                    <div class="post post-single">
-                        <!-- post header -->
-                        <div class="post-header">
-                            <h1 class="title mt-0 mb-3 bd-font">{{ $blog->title }}</h1>
-                            <ul class="meta list-inline mb-0">
-                                <li class="list-inline-item"><a href="#">{{ $blog->category->name }}</a></li>
-                                <li class="list-inline-item">{{ $blog->created_at->format('d M y') }}</li>
-                                <li class="list-inline-item"><img src="{{ asset('Themes/Theme1/images/eyebig.svg') }}"
-                                        alt=""> <a href="#">{{ number_format($blog->view_count) }}</a></li>
-                            </ul>
-                        </div>
-                        <!-- post content -->
-                        <div class="post-content clearfix">
-                            <div class="entry-content bd-font" itemprop="text">
-                                {!! $blog->content !!}
-                            </div>
-                        </div>
-                        <!-- post bottom section -->
-                        <div class="post-bottom">
-                            <div class="row d-flex align-items-center">
-                                <div class="col-md-6 col-12 text-center text-md-start">
-                                    <!-- tags -->
-                                    @foreach ($tags as $key => $tag)
-                                        <a href="#" class="tag">#{{ $tag }}</a>
-                                    @endforeach
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <!-- social icons -->
-                                    <ul class="social-icons list-unstyled list-inline mb-0 float-md-end">
-                                        <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a>
-                                        </li>
-                                        <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a>
-                                        </li>
-                                        <li class="list-inline-item"><a href="#"><i
-                                                    class="fab fa-linkedin-in"></i></a></li>
-                                        <li class="list-inline-item"><a href="#"><i class="fab fa-pinterest"></i></a>
-                                        </li>
-                                        <li class="list-inline-item"><a href="#"><i
-                                                    class="fab fa-telegram-plane"></i></a></li>
-                                        <li class="list-inline-item"><a href="#"><i class="far fa-envelope"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    @if ($blog->parts)
-                        <div class="spacer" data-height="50" style="height: 50px;"></div>
-
-                        <div class="row">
-                            @foreach ($blog->parts as $key => $part)
-                                @if ($part->part)
-                                    {{-- item --}}
-                                    <div class="col-6 col-md-3">
-                                        <div class="card bd-card p-1 position-relative shadow-sm rounded bd-font">
-                                            <a style="bottom: -16px; width:45px;"
-                                                class="btn btn-default shadow text-white position-absolute start-50 translate-middle-x rounded-5"
-                                                href="{{ route('blog.view', $part->part->slug) }}">{{ $key + 1 }}</a>
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <a href="{{ route('blog.view', $part->part->slug) }}">
-                                                            <h5 style="font-size: 13px;margin: 5px 0">
-                                                                {{ $part->part->title }}
-                                                            </h5>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="row" style="font-size: 11px">
-                                                    <div class="col-6 text-secondary">
-                                                        <span class="fw-bolder">khaalifa</span>
-                                                    </div>
-                                                    <div class="col-6 fw-bolder" style="text-align: end">
-                                                        <p class="text-secondary"><span style="padding-right: 3px"><img
-                                                                    src="{{ asset('Themes/Theme1/images/eye.svg') }}"
-                                                                    alt=""></span>{{ number_format($part->part->view_count) }}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
-
-                        </div>
-                    @endif
-
-                    <div class="spacer" data-height="50" style="height: 50px;"></div>
-
-                    <!-- section header -->
-                    <div class="section-header">
-                        <h3 class="section-title">অনুরূপ</h3>
-                        <img src="{{ asset('Themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
-                    </div>
-
-                    <div class="row gy-5">
-                        @foreach ($related as $blog)
+                    <div class="row gy-4">
+                        @foreach ($blogs as $blog)
                             <div class="col-lg-6 mb-2">
                                 <x-blog-main :blog="$blog" />
                             </div>
                         @endforeach
                     </div>
+
+                    <div class="spacer" data-height="50" style="height: 30px;"></div>
+
+                    <div class="row">
+                        {{ $blogs->links('pagination::bootstrap-4') }}
+                    </div>
+
+
+
                 </div>
 
                 <div class="col-lg-4">
@@ -139,13 +44,31 @@
                     <div class="sidebar">
                         <!-- widget about -->
                         <div class="widget rounded">
-                            <div class="widget-about data-bg-image text-center"
-                                data-bg-image="{{ asset('Themes/Theme1/images/map-bg.png') }}">
+                            <div class="widget-about data-bg-image text-center" data-bg-image="images/map-bg.png">
+                                <img src="images/logo.svg" alt="logo" class="mb-4" />
                                 <p class="mb-4 bd-font">প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
                                     আপনি।
                                     যেভাবে বলবেন সেভাবেই আপনার পানি বের করে দিচ্ছি
                                 </p>
                             </div>
+                        </div>
+
+                        <!-- widget categories -->
+                        <div class="widget rounded bd-font">
+                            <div class="widget-header text-center">
+                                <h3 class="widget-title">বিভাগ</h3>
+                                <img src="{{ asset('themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
+                            </div>
+                            <div class="widget-content">
+                                <ul class="list">
+                                    @foreach ($cats as $cat)
+                                        <li><a
+                                                href="{{ route('category.view', $cat->slug) }}">{{ $cat->name }}</a><span>({{ $cat->blogs ? $cat->blogs->count() : '0' }})</span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+
                         </div>
 
                         <!-- widget popular posts -->
@@ -177,24 +100,6 @@
                                     </div>
                                 @endforeach
                             </div>
-                        </div>
-
-                        <!-- widget categories -->
-                        <div class="widget rounded bd-font">
-                            <div class="widget-header text-center">
-                                <h3 class="widget-title">বিভাগ</h3>
-                                <img src="{{ asset('themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
-                            </div>
-                            <div class="widget-content">
-                                <ul class="list">
-                                    @foreach ($cats as $cat)
-                                        <li><a
-                                                href="{{ route('category.view', $cat->slug) }}">{{ $cat->name }}</a><span>({{ $cat->blogs ? $cat->blogs->count() : '0' }})</span>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-
                         </div>
 
                         <!-- widget newsletter -->

@@ -13,7 +13,7 @@
                          <a class="nav-link" href="category">চটি ম্যাসেজ</a>
                      </li> --}}
                      <li class="nav-item dropdown">
-                         <a class="nav-link dropdown-toggle" href="#">গল্প</a>
+                         <a class="nav-link dropdown-toggle" href="#">চটি গল্প</a>
                          <ul class="dropdown-menu">
                              @foreach ($categories as $category)
                                  <li><a class="dropdown-item"
@@ -23,7 +23,10 @@
                          </ul>
                      </li>
                      <li class="nav-item">
-                         <a class="nav-link" href="#">Contact</a>
+                         <a class="nav-link" href="#">Share Story</a>
+                     </li>
+                     <li class="nav-item">
+                         <a class="nav-link" href="{{ route('contact') }}">Contact</a>
                      </li>
                  </ul>
              </div>
@@ -38,10 +41,10 @@
                  </ul>
                  <!-- header buttons -->
                  <div class="header-buttons">
-                     <button class="search icon-button">
+                     <button type="button" class="search icon-button" aria-label="Search">
                          <i class="icon-magnifier"></i>
                      </button>
-                     <button class="burger-menu icon-button">
+                     <button type="button" class="burger-menu icon-button" aria-label="Menu">
                          <span class="burger-icon"></span>
                      </button>
                  </div>

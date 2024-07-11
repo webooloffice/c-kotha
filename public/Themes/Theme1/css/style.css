@@ -672,6 +672,14 @@ body.down .header-default.clone, body.down .header-personal nav.clone, body.down
   color: #FFF;
 }
 
+.badge-new {
+    font-size: 10px;
+    padding: 0 10px 0 10px;
+    background: #34d3993d;
+    border-radius: 10px;
+    border: 1px solid #34D399;
+    line-height: 0;
+}
 .text-logo {
   color: #203656;
   font-size: 30px;

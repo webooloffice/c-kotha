@@ -9,7 +9,7 @@
     </div>
     <div class="details clearfix">
         <h6 class="my-0 bd-font fw-bolder"><a href="{{ route('blog.view', $blog->slug) }}"
-                style="color: #203656">{{ $blog->title }}</a></h6>
+                style="color: #203656">{{ $blog->title }} <span class="badge-new">New</span></a></h6>
         <ul class="meta list-inline mt-1 mb-0">
             <li class="list-inline-item">{{ $blog->gettingDate() }}</li>
         </ul>

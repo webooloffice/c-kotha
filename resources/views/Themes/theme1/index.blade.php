@@ -17,27 +17,28 @@
             <div class="row gy-4">
 
                 <div class="col-lg-8">
-
-                    <!-- featured post large -->
-                    <div class="post featured-post-lg">
-                        <div class="details clearfix">
-                            <a href="#" class="category-badge bd-font">সারপ্রাইজ</a>
-                            <h2 class="post-title bd-font" style="letter-spacing: 2px;"><a href="#">নিশোর
-                                    সারপ্রাইজ দ্বিতীয় পর্ব বউকে
-                                    ন্যাংটো দিলাম পর্ব ১</a>
-                            </h2>
-                            <ul class="meta list-inline mb-0">
-                                <li class="list-inline-item"><a href="#">Katen Doe</a></li>
-                                <li class="list-inline-item">29 March 2021</li>
-                            </ul>
-                        </div>
-                        <a href="#">
-                            <div class="thumb rounded">
-                                <div class="inner data-bg-image"
-                                    data-bg-image="{{ asset('Themes/Theme1/images/posts/featured-lg.jpg') }}"></div>
+                    @if ($banner)
+                        <!-- featured post large -->
+                        <div class="post featured-post-lg">
+                            <div class="details clearfix">
+                                <a href="#"
+                                    class="category-badge bd-font">{{ $banner->category ? $banner->category->name : 'Non' }}</a>
+                                <h2 class="post-title bd-font" style="letter-spacing: 2px;"><a
+                                        href="#">{{ $banner->title }}</a>
+                                </h2>
+                                <ul class="meta list-inline mb-0">
+                                    <li class="list-inline-item"><a href="#">{{ $banner->author }}</a></li>
+                                    <li class="list-inline-item">{{ $banner->gettingDate() }}</li>
+                                </ul>
                             </div>
-                        </a>
-                    </div>
+                            <a href="{{ route('blog.view', $banner->slug) }}">
+                                <div class="thumb rounded">
+                                    <div class="inner data-bg-image"
+                                        data-bg-image="{{ asset('Themes/Theme1/images/posts/featured-lg.jpg') }}"></div>
+                                </div>
+                            </a>
+                        </div>
+                    @endif
 
                 </div>
 

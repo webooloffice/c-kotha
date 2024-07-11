@@ -90,9 +90,12 @@ class HomeController extends Controller
         //Recent
         $recent = Blog::orderBy('id', 'desc')->take(4)->get();
 
+        $banner = Blog::where('featured', 1)->orderBy('id', 'desc')->first();
+
         return view('Themes.theme1.index', [
             'recent'    => $recent,
             'bests'     => $best,
+            'banner'    => $banner,
             'cats'      => $category,
         ]);
         // }

@@ -89,6 +89,14 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-group col-md-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="featured" id="featured">
+                                        <label class="form-check-label" for="featured">
+                                            Featured
+                                        </label>
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-3 col-form-label">Content <span

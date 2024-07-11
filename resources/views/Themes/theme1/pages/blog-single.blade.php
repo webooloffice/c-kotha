@@ -141,9 +141,9 @@
                         <div class="widget rounded">
                             <div class="widget-about data-bg-image text-center"
                                 data-bg-image="{{ asset('Themes/Theme1/images/map-bg.png') }}">
-                                <p class="mb-4 bd-font">প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
-                                    আপনি।
-                                    যেভাবে বলবেন সেভাবেই আপনার পানি বের করে দিচ্ছি
+                                <p class="mb-4 bd-font">চটি কথা, একটি অনন্য অনলাইন প্ল্যাটফর্ম যেখানে আপনি আপনার অভিজ্ঞতা ও
+                                    স্বীকারোক্তি শেয়ার করতে পারেন। গোপনীয়তা বজায় রেখে, আপনার কাহিনী শুনুন ও অন্যদের
+                                    কাহিনী পড়ুন
                                 </p>
                             </div>
                         </div>
@@ -213,7 +213,7 @@
                                     <button class="btn btn-default btn-full" type="submit">Sign Up</button>
                                 </form>
                                 <span class="newsletter-privacy text-center mt-3">By signing up, you agree to our <a
-                                        href="#">Privacy Policy</a></span>
+                                        href="{{ route('privacy') }}">Privacy Policy</a></span>
                             </div>
                         </div>
 
@@ -247,7 +247,7 @@
                                                         <p class="text-secondary"
                                                             style="display: flex;justify-content: flex-end;"><img
                                                                 src="{{ asset('Themes/Theme1/images/eyebig.svg') }}"
-                                                                alt="">156 view</p>
+                                                                alt="">{{ $blog->view_count }} view</p>
                                                     </div>
                                                 </div>
                                             </div>

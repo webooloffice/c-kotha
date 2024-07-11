@@ -118,7 +118,7 @@
                                     <button class="btn btn-default btn-full" type="submit">Sign Up</button>
                                 </form>
                                 <span class="newsletter-privacy text-center mt-3">By signing up, you agree to our <a
-                                        href="#">Privacy Policy</a></span>
+                                        href="{{ route('privacy') }}">Privacy Policy</a></span>
                             </div>
                         </div>
 

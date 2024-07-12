@@ -76,7 +76,7 @@
 
                                 <div class="form-group col-12">
                                     <label class="col-sm-3 col-form-label">Content</label>
-                                    <textarea id="summernote" name="content">{{ $blog->title }}</textarea>
+                                    <textarea id="summernote" name="content">{{ $blog->content }}</textarea>
                                 </div>
 
                                 <div class="form-group col-6">

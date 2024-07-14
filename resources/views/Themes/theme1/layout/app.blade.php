@@ -24,43 +24,7 @@
 
 <body class="bd-font">
 
-    {{-- Age modal --}}
-    <div class="modal fade" id="ageVerification" tabindex="-1" aria-labelledby="ageVerificationLabel"
-        aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-        <div class="modal-dialog">
-            <div class="modal-content" style="color: rgba(0, 0, 0, 0.816);padding: 18px">
-                <div class="mt-5 d-flex justify-content-center">
-                    <img src="{{ asset($config->logo) }}" alt="choti kotha / choti golpo" width="140">
-                </div>
-                <div class="modal-body text-center">
-                    <strong style="font-size: 24px" class="mb-4">This is an adult story website</strong>
-                    <p style="color: rgb(15, 14, 14);font-size: 16px">This website contains age-restricted materials
-                        including nudity and explicit depictions of sexual
-                        activity. By entering, you affirm that you are at least 18 years of age or the age of majority
-                        in the jurisdiction you are accessing the website from and you consent to viewing sexually
-                        explicit content.</p>
-                    <div class="row gx-3">
-                        <div class="col-md-6 mb-1">
-                            <button type="button" class="btn btn-default btn-full" data-bs-dismiss="modal">I'm 18 or
-                                older - Enter</button>
-                        </div>
-                        <div class="col-md-6 mb-1">
-                            <a href="https://www.google.com/" rel="nofollow" type="button"
-                                class="btn btn-secondary btn-full">I'm under 18 - Exit</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row text-center justify-content-center">
-                    <div class="col-md-9">
-                        <p>Google <a href="https://safety.google/families/parental-supervision/" rel="nofollow">parental
-                                controls
-                                page</a> explains how you can easily
-                            block access to this site.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <!-- preloader -->
     <div id="preloader">

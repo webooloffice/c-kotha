@@ -1,8 +1,6 @@
 @extends('dashboard.layout.app')
 
 @section('style')
-    <!-- include libraries(jQuery, bootstrap) -->
-
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
@@ -31,7 +29,6 @@
                             <h4 class='card-title'>Edit Blog</h4>
                         </div>
                         <div class="card-body">
-
                             <div class="row">
                                 <div class="form-group col-6">
                                     <label class="col-sm-3 col-form-label">Category Name</label>
@@ -60,18 +57,9 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-6 mb-3">
+                                <div class="mb-3">
                                     <label for="formFile" class="form-label">Image</label>
                                     <input class="form-control" type="file" id="formFile" name="image">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="featured" id="featured"
-                                            {{ $blog->featured == 1 ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="featured">
-                                            Featured
-                                        </label>
-                                    </div>
                                 </div>
 
                                 <div class="form-group col-12">
@@ -109,6 +97,18 @@
 
                         <div class="card-body">
 
+                            <div class="form-group ">
+                                <label class="col-sm-3 col-form-label">slug <span class="required-tag">*</span></label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control @error('slug') is-invalid @enderror"
+                                        placeholder="blog slug" name="slug" value="{{ $blog->slug }}">
+                                    @error('slug')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">SEO Title</label>
                                 <div class="col-sm-12">

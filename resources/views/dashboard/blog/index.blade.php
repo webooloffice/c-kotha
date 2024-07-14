@@ -70,7 +70,9 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="formFile" class="form-label">Image </label>
+                                    <label for="formFile" class="form-label">Image <span
+                                            style="font-size: 12px;font-style: italic">width-110px / height-80px</span>
+                                    </label>
                                     <input class="form-control @error('image') is-invalid @enderror" type="file"
                                         id="formFile" name="image" value="{{ old('image') }}">
                                     @error('image')
@@ -88,14 +90,6 @@
                                             <option value="{{ $blog->id }}">{{ $blog->slug }}</option>
                                         @endforeach
                                     </select>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="featured" id="featured">
-                                        <label class="form-check-label" for="featured">
-                                            Featured
-                                        </label>
-                                    </div>
                                 </div>
 
                                 <div class="form-group">

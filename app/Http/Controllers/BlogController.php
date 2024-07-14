@@ -42,6 +42,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $request->validate([
             'category_id'       => 'required',
             'title'             => 'required',
@@ -62,7 +63,6 @@ class BlogController extends Controller
         $blog->seo_description  = $request->seo_description;
         $blog->seo_tags         = $request->seo_tags;
         $blog->slug             = $request->slug != null ? $request->slug : Str::slug($request->title, '-');
-        $blog->featured            = $request->featured ? 1 : 0;
         $blog->save();
 
 
@@ -131,7 +131,6 @@ class BlogController extends Controller
         $blog->slug             = $request->slug != null ? $request->slug : Str::slug($request->title, '-');
 
 
-
         if ($request->has('image')) {
             $oldImage = $blog->image;
             if (file_exists($oldImage)) {
@@ -141,7 +140,6 @@ class BlogController extends Controller
 
             $blog->image = Self::upload($request);
         }
-        $blog->featured     = $request->featured ? 1 : 0;
         $blog->save();
         return back()->with('success', 'Blog updated successfully');
     }

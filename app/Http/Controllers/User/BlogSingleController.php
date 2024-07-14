@@ -41,7 +41,7 @@ class BlogSingleController extends Controller
             $config = Config::where('status', 'active')->first();
 
             if ($config) {
-                $img = url('/') . '/' . $config->logo;
+                $img = url('/') . '/' . $blog->image;
                 $url = $config->url;
                 $name = $config->name;
                 //Canonical

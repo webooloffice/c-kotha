@@ -152,7 +152,8 @@
     @include('Themes.theme1.layout.footerlink')
     <script>
         $(document).ready(function() {
-            //live search
+
+            // Live search
             let x = $('.live-search').on('input', function() {
                 var query = $(this).val();
                 const container = document.getElementById('search_content');
@@ -209,15 +210,39 @@
                 });
             });
 
-            //Age verification
-            // document.addEventListener('DOMContentLoaded', function() {
-            var myModal = new bootstrap.Modal(document.getElementById('ageVerification'), {
-                backdrop: 'static',
-                keyboard: false
-            });
-            myModal.show();
-            // });
+            // Check if the user has already visited in the last minute
+            if (!getCookie('ageVerified')) {
+                var myModal = new bootstrap.Modal(document.getElementById('ageVerification'), {
+                    backdrop: 'static',
+                    keyboard: false
+                });
+                myModal.show();
+            }
 
+            // Set the cookie when the user clicks the enter button
+            document.getElementById('enterButton').addEventListener('click', function() {
+                setCookie('ageVerified', 'true', 180);
+            });
+
+            // Function to set a cookie
+            function setCookie(name, value, minutes) {
+                var d = new Date();
+                d.setTime(d.getTime() + (minutes * 60 * 1000));
+                var expires = "expires=" + d.toUTCString();
+                document.cookie = name + "=" + value + ";" + expires + ";path=/";
+            }
+
+            // Function to get a cookie
+            function getCookie(name) {
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            }
         });
     </script>
 </body>

@@ -29,7 +29,8 @@
                         explicit content.</p>
                     <div class="row gx-3">
                         <div class="col-md-6 mb-1">
-                            <button type="button" class="btn btn-default btn-full" data-bs-dismiss="modal">I'm 18 or
+                            <button type="button" id="enterButton" class="btn btn-default btn-full"
+                                data-bs-dismiss="modal">I'm 18 or
                                 older - Enter</button>
                         </div>
                         <div class="col-md-6 mb-1">
@@ -71,7 +72,7 @@
                             </div>
                             <a href="{{ route('blog.view', $banner->slug) }}">
                                 <div class="thumb rounded">
-                                    @if ($banner->image == null)
+                                    @if ($banner->image)
                                         <div class="inner data-bg-image"
                                             data-bg-image="{{ asset('Themes/Theme1/images/posts/featured-lg.jpg') }}"></div>
                                     @else
@@ -198,7 +199,7 @@
                                                 style="color: #203656 !important;font-size: 1.25rem">
                                                 {{ $blog->title }}</a>
                                             <p class="text-secondary mt-3">
-                                                {{ $blog->seo_description }}
+                                                {{ $blog->description() }}
                                             </p>
                                         </div>
                                     </div>
@@ -335,7 +336,7 @@
                                                                 style="color: #203656 !important;font-size: 1.25rem">
                                                                 {{ $blog->title }}</h5>
                                                         </a>
-                                                        <p class="text-secondary mt-3">{{ $blog->seo_description }}</p>
+                                                        <p class="text-secondary mt-3">{{ $blog->description() }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="font-size: 13px">

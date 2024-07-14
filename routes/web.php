@@ -16,7 +16,7 @@ use App\Http\Controllers\User\HomeController as UserHomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-
+//Frontend routes
 Route::get('/', [UserHomeController::class, 'index'])->name('home');
 Route::get('/view/{id}', [BlogSingleController::class, 'index'])->name('blog.view');
 Route::get('/categories/{slugs}', [UserHomeController::class, 'category'])->name('category.view');
@@ -28,24 +28,19 @@ Route::get('/privacy', [SiteController::class, 'privacy'])->name('privacy');
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/sitemap', [SitemapController::class, 'sitemap'])->name('sitemap');
 
-// Route::get('/dashboard', function() {
-//     return view('dashboard.index');
-// });
 
+// Backend routes with middleware and prefix
+Route::middleware(['auth'])->prefix('kotha')->group(function () {
+    Route::resource('category', CategoryController::class);
+    Route::resource('blog', BlogController::class);
+    Route::resource('user', UserController::class);
+    Route::resource('config', ConfigController::class);
+    Route::resource('social', SocialController::class);
+    Route::resource('custom_code', CustomeCodeController::class);
+    Route::resource('seo', SeoController::class);
 
-// backend routes
-Route::resources([
-    'category' => CategoryController::class,
-    'blog' => BlogController::class,
-    'user' => UserController::class,
-    'config' => ConfigController::class,
-    'social' => SocialController::class,
-    'custom_code' => CustomeCodeController::class,
-    'seo' => SeoController::class
-
-]);
-
-Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+});
 //Auth::routes();
 
 Route::prefix('kotha')->group(function () {

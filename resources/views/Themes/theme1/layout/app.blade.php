@@ -10,7 +10,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-    {{-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> --}}
+    <meta name="rating" content="RTA-5042-1996-1400-1577-RTA" />
+    <meta name="rating" content="adult" />
     {!! SEOMeta::generate() !!}
     {!! OpenGraph::generate() !!}
     {!! Twitter::generate() !!}

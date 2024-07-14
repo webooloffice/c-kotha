@@ -1,8 +1,10 @@
 @php
     use App\Models\Config;
     use App\Models\Category;
+    use App\Models\CustomCode;
     $config = Config::where('status', 'active')->first();
     $categories = Category::where('status', 'active')->get();
+    $code = CustomCode::first();
 @endphp
 <!DOCTYPE html>
 <html lang="en-US">
@@ -19,6 +21,9 @@
     <link href='https://fonts.googleapis.com/css?family=Anek Bangla' rel='stylesheet'>
     @include('Themes.theme1.layout.headerlink')
     {!! JsonLd::generate() !!}
+    @if ($code)
+        {{ $code->header }}
+    @endif
     @yield('style')
     @include('Themes.theme1.layout.header')
 </head>
@@ -151,6 +156,9 @@
     @include('Themes.theme1.layout.footer')
     @yield('scripts')
     @include('Themes.theme1.layout.footerlink')
+    @if ($code)
+        {{ $code->footer }}
+    @endif
     <script>
         $(document).ready(function() {
 

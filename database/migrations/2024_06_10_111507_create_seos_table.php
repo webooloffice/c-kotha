@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->enum('page', ['home', 'about', 'privacy', 'contact']);
             $table->string('seo_title');
-            $table->string('seo_description');
+            $table->longText('seo_description');
             $table->string('seo_tags');
             $table->timestamps();
         });

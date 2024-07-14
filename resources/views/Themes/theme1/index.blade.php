@@ -5,7 +5,6 @@
         $bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
         return str_replace($englishDigits, $bengaliDigits, $number);
     }
-
     use App\Models\Config;
     $config = Config::where('status', 'active')->first();
 @endphp
@@ -123,7 +122,6 @@
 
         </div>
     </section>
-
     <!-- section main content -->
     <section class="main-content">
         <div class="container-xl">

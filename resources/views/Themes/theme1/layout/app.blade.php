@@ -22,7 +22,7 @@
     @include('Themes.theme1.layout.headerlink')
     {!! JsonLd::generate() !!}
     @if ($code)
-        {{ $code->header }}
+        {!! $code->header !!}
     @endif
     @yield('style')
     @include('Themes.theme1.layout.header')
@@ -157,7 +157,7 @@
     @yield('scripts')
     @include('Themes.theme1.layout.footerlink')
     @if ($code)
-        {{ $code->footer }}
+        {!! $code->footer !!}
     @endif
     <script>
         $(document).ready(function() {

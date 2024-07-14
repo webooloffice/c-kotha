@@ -20,7 +20,6 @@
                             <h4 class="card-title">Edit Category</h4>
                         </div>
                         <div class="card-body">
-
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label class="col-sm-3 col-form-label">Name</label>
@@ -45,14 +44,15 @@
                                     <div class="col-sm-9">
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status" value="active"
-                                                checked>
+                                                {{ $category->status == 'active' ? 'checked' : '' }}>
                                             <label class="form-check-label">
                                                 Active
                                             </label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="status" value="inactive">
-                                            <label class="form-check-label">
+                                            <label class="form-check-label"
+                                                {{ $category->status == 'inactive' ? 'checked' : '' }}>
                                                 Inactive
                                             </label>
                                         </div>

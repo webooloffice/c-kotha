@@ -21,10 +21,10 @@
                         <!-- featured post large -->
                         <div class="post featured-post-lg">
                             <div class="details clearfix">
-                                <a href="#"
+                                <a href="{{ route('category.view', $banner->category ? $banner->category->slug : '#') }}"
                                     class="category-badge bd-font">{{ $banner->category ? $banner->category->name : 'Non' }}</a>
                                 <h2 class="post-title bd-font" style="letter-spacing: 2px;"><a
-                                        href="#">{{ $banner->title }}</a>
+                                        href="{{ route('blog.view', $banner->slug) }}">{{ $banner->title }}</a>
                                 </h2>
                                 <ul class="meta list-inline mb-0">
                                     <li class="list-inline-item"><a href="#">{{ $banner->author }}</a></li>
@@ -33,8 +33,12 @@
                             </div>
                             <a href="{{ route('blog.view', $banner->slug) }}">
                                 <div class="thumb rounded">
-                                    <div class="inner data-bg-image"
-                                        data-bg-image="{{ asset('Themes/Theme1/images/posts/featured-lg.jpg') }}"></div>
+                                    @if ($banner->image == null)
+                                        <div class="inner data-bg-image"
+                                            data-bg-image="{{ asset('Themes/Theme1/images/posts/featured-lg.jpg') }}"></div>
+                                    @else
+                                        <div class="inner data-bg-image" data-bg-image="{{ asset($banner->image) }}"></div>
+                                    @endif
                                 </div>
                             </a>
                         </div>
@@ -152,8 +156,9 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <h5 class="fw-bolder bd-font" style="color: #C60B0D !important;">
-                                                {{ $blog->title }}</h5>
+                                            <a href="{{ route('blog.view', $blog->slug) }}" class="fw-bolder bd-font"
+                                                style="color: #203656 !important;font-size: 1.25rem">
+                                                {{ $blog->title }}</a>
                                             <p class="text-secondary mt-3">
                                                 {{ $blog->seo_description }}
                                             </p>
@@ -289,7 +294,7 @@
                                                     <div class="col">
                                                         <a href="{{ route('blog.view', $blog->slug) }}">
                                                             <h5 class="fw-bolder bd-font"
-                                                                style="color: #C60B0D !important;">
+                                                                style="color: #203656 !important;font-size: 1.25rem">
                                                                 {{ $blog->title }}</h5>
                                                         </a>
                                                         <p class="text-secondary mt-3">{{ $blog->seo_description }}</p>

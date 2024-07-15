@@ -1,5 +1,12 @@
-@extends('errors::minimal')
+@extends('Themes.theme1.layout.app')
 
-@section('title', __('Server Error'))
-@section('code', '500')
-@section('message', __('Server Error'))
+@section('content')
+    <section class="not-found d-flex align-items-center padding-30" style="height: 65vh;">
+        <div class="container text-center">
+            <h1 class="mb-4 mt-0 font-black">500 Not Found</h1>
+            <p class="mb-4">Server error.</p>
+            <a href="{{ route('home') }}" class="btn btn-default"><i class="fa-sharp fa-solid fa-house" aria-hidden="true"></i>
+                Return Home</a>
+        </div>
+    </section>
+@endsection

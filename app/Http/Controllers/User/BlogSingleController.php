@@ -20,8 +20,11 @@ class BlogSingleController extends Controller
         $blog = Blog::where('slug', $slug)->first();
         $category = Category::where('status', 'active')->get();
 
+        $related = [];
         //getting related blo
-        $related = Blog::where('category_id', $blog->category_id)->where('id', '!=', $blog->id)->orderBy('created_at', 'desc')->take(4)->get();
+        if ($blog->category_id) {
+            $related = Blog::where('category_id', 100000)->where('id', '!=', $blog->id)->orderBy('created_at', 'desc')->take(4)->get();
+        }
 
         //getting most view alltime blog
         $best = Blog::orderBy('view_count', 'desc')->take(4)->get();

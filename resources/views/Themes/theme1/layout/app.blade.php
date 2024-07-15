@@ -110,7 +110,7 @@
 
         <!-- logo -->
         <div class="logo">
-            <img src="{{ asset($config ? $config->logo : '') }}" alt="Katen" />
+            <img src="{{ asset($config ? $config->logo : '') }}" alt="choti kotha" />
         </div>
 
         <!-- menu -->

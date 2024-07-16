@@ -24,6 +24,18 @@
     @if ($code)
         {!! $code->header !!}
     @endif
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JTZ99PXTJ8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-JTZ99PXTJ8');
+    </script>
     @yield('style')
     @include('Themes.theme1.layout.header')
 </head>

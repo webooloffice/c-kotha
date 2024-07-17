@@ -1,0 +1,17 @@
+User-agent: *
+Disallow: /kotha/
+
+# Allow frontend routes
+Allow: /
+Allow: /view/
+Allow: /categories/
+Allow: /blogs
+Allow: /about
+Allow: /contact
+Allow: /privacy
+Allow: /search
+Allow: /sitemap
+
+
+# Sitemap location
+Sitemap: https://chotikotha.com/sitemap.xml

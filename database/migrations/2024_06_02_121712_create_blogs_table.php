@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('category_id');
             $table->string('author');
             $table->string('title');
+            $table->integer('featured')->default(0);
             $table->longText('content');
             $table->string('image')->nullable();
             $table->integer('view_count')->nullable()->default(0);

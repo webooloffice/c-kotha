@@ -1,8 +1,10 @@
 @php
     use App\Models\Config;
     use App\Models\Category;
+    use App\Models\CustomCode;
     $config = Config::where('status', 'active')->first();
     $categories = Category::where('status', 'active')->get();
+    $code = CustomCode::first();
 @endphp
 <!DOCTYPE html>
 <html lang="en-US">
@@ -10,7 +12,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-    {{-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> --}}
+    <meta name="rating" content="RTA-5042-1996-1400-1577-RTA" />
+    <meta name="rating" content="adult" />
     {!! SEOMeta::generate() !!}
     {!! OpenGraph::generate() !!}
     {!! Twitter::generate() !!}
@@ -18,11 +21,28 @@
     <link href='https://fonts.googleapis.com/css?family=Anek Bangla' rel='stylesheet'>
     @include('Themes.theme1.layout.headerlink')
     {!! JsonLd::generate() !!}
+    @if ($code)
+        {!! $code->header !!}
+    @endif
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JTZ99PXTJ8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-JTZ99PXTJ8');
+    </script>
     @yield('style')
     @include('Themes.theme1.layout.header')
 </head>
 
 <body class="bd-font">
+
+
 
     <!-- preloader -->
     <div id="preloader">
@@ -102,7 +122,7 @@
 
         <!-- logo -->
         <div class="logo">
-            <img src="{{ asset($config ? $config->logo : '') }}" alt="Katen" />
+            <img src="{{ asset($config ? $config->logo : '') }}" alt="choti kotha" />
         </div>
 
         <!-- menu -->
@@ -148,10 +168,13 @@
     @include('Themes.theme1.layout.footer')
     @yield('scripts')
     @include('Themes.theme1.layout.footerlink')
+    @if ($code)
+        {!! $code->footer !!}
+    @endif
     <script>
         $(document).ready(function() {
 
-
+            // Live search
             let x = $('.live-search').on('input', function() {
                 var query = $(this).val();
                 const container = document.getElementById('search_content');
@@ -177,7 +200,7 @@
                             const titleElement = document.createElement('h6');
                             titleElement.className = 'my-0 bd-font fw-bolder';
                             const titleLink = document.createElement('a');
-                            titleLink.href = `/post/${post.slug}`;
+                            titleLink.href = `/view/${post.slug}`;
                             titleLink.textContent = post.title;
                             titleLink.style.color = '#203656';
                             titleElement.appendChild(titleLink);
@@ -207,6 +230,40 @@
                     }
                 });
             });
+
+            // Check if the user has already visited in the last minute
+            if (!getCookie('ageVerified')) {
+                var myModal = new bootstrap.Modal(document.getElementById('ageVerification'), {
+                    backdrop: 'static',
+                    keyboard: false
+                });
+                myModal.show();
+            }
+
+            // Set the cookie when the user clicks the enter button
+            document.getElementById('enterButton').addEventListener('click', function() {
+                setCookie('ageVerified', 'true', 180);
+            });
+
+            // Function to set a cookie
+            function setCookie(name, value, minutes) {
+                var d = new Date();
+                d.setTime(d.getTime() + (minutes * 60 * 1000));
+                var expires = "expires=" + d.toUTCString();
+                document.cookie = name + "=" + value + ";" + expires + ";path=/";
+            }
+
+            // Function to get a cookie
+            function getCookie(name) {
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            }
         });
     </script>
 </body>

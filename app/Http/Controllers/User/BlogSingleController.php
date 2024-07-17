@@ -20,8 +20,11 @@ class BlogSingleController extends Controller
         $blog = Blog::where('slug', $slug)->first();
         $category = Category::where('status', 'active')->get();
 
-        //getting related blog
-        $related = Blog::where('category_id', $blog->category_id)->where('id', '!=', $blog->id)->orderBy('created_at', 'desc')->take(4)->get();
+        $related = [];
+        //getting related blo
+        if ($blog->category_id) {
+            $related = Blog::where('category_id', 100000)->where('id', '!=', $blog->id)->orderBy('created_at', 'desc')->take(4)->get();
+        }
 
         //getting most view alltime blog
         $best = Blog::orderBy('view_count', 'desc')->take(4)->get();
@@ -41,7 +44,7 @@ class BlogSingleController extends Controller
             $config = Config::where('status', 'active')->first();
 
             if ($config) {
-                $img = url('/') . '/' . $config->logo;
+                $img = url('/') . '/' . $blog->image;
                 $url = $config->url;
                 $name = $config->name;
                 //Canonical
@@ -127,5 +130,25 @@ class BlogSingleController extends Controller
         } else {
             return back();
         }
+    }
+    public function blogs()
+    {
+        $category = Category::where('status', 'active')->get();
+
+        //getting most view alltime blog
+        $best = Blog::orderBy('view_count', 'desc')->take(4)->get();
+
+        //Recent
+        $recent = Blog::orderBy('id', 'desc')->take(4)->get();
+
+        //category product
+        $categoryBlog = Blog::where('status', 'active')->paginate(12);
+
+        return view('Themes.theme1.pages.blog', [
+            'blogs'     => $categoryBlog,
+            'recent'    => $recent,
+            'bests'     => $best,
+            'cats'      => $category,
+        ]);
     }
 }

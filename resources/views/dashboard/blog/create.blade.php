@@ -20,20 +20,11 @@
                             <table class="table table-responsive-md">
                                 <thead>
                                     <tr>
-                                        {{-- <th style="width:50px;">
-                                        <div class="form-check custom-checkbox checkbox-success check-lg me-3">
-                                            <input type="checkbox" class="form-check-input" id="checkAll" required="">
-                                            <label class="form-check-label" for="checkAll"></label>
-                                        </div>
-                                    </th> --}}
                                         <th><strong>Sl. No</strong></th>
                                         <th><strong>Blog Title</strong></th>
                                         <th><strong>Category Name</strong></th>
                                         <th><strong>Author's Name</strong></th>
                                         <th><strong>Image</strong></th>
-                                        {{-- <th><strong>SEO Title</strong></th>
-                                    <th><strong>SEO Description</strong></th>
-                                    <th><strong>SEO Tags</strong></th> --}}
                                         <th><strong>Status</strong></th>
                                         <th><strong>Action</strong></th>
                                     </tr>
@@ -41,12 +32,6 @@
                                 <tbody>
                                     @foreach ($blog as $sl => $blogs)
                                         <tr>
-                                            {{-- <td>
-                                            <div class="form-check custom-checkbox checkbox-success check-lg me-3">
-                                                <input type="checkbox" class="form-check-input" id="customCheckBox2" required="">
-                                                <label class="form-check-label" for="customCheckBox2"></label>
-                                            </div>
-                                        </td> --}}
                                             <td><strong>{{ $sl + 1 }}</strong></td>
 
                                             <td><span class="w-space-no">{{ $blogs->title }}</span>
@@ -61,13 +46,6 @@
                             <div class="d-flex align-items-center"><img src="{{ url('/' . $blogs->image) }}"
                                     class="rounded-lg me-2" width="20" alt="">
                         </td>
-
-                        {{-- <td><span class="w-space-no">{{ $blogs->seo_title }}</span></td>
-
-                                        <td><span class="w-space-no">{{ $blogs->seo_description }}</span></td>
-
-                                        <td><span class="w-space-no">{{ $blogs->seo_tags }}</span></td> --}}
-
                         <td><span
                                 class="badge light {{ $blogs->status == 'inactive' ? 'badge-danger' : 'badge light' }} badge-success">{{ $blogs->status }}</span>
                         </td>

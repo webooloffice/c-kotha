@@ -5,39 +5,82 @@
         $bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
         return str_replace($englishDigits, $bengaliDigits, $number);
     }
+    use App\Models\Config;
+    $config = Config::where('status', 'active')->first();
 @endphp
 @extends('Themes.theme1.layout.app')
 
 @section('content')
-    {{ config('config') }}
-    <!-- hero section -->
+    {{-- Age modal --}}
+    <div class="modal fade" id="ageVerification" tabindex="-1" aria-labelledby="ageVerificationLabel" aria-hidden="true"
+        data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content" style="color: rgba(0, 0, 0, 0.816);padding: 18px">
+                <div class="mt-5 d-flex justify-content-center">
+                    <img src="{{ asset($config->logo) }}" alt="choti kotha / choti golpo" width="140">
+                </div>
+                <div class="modal-body text-center">
+                    <strong style="font-size: 24px" class="mb-4">This is an adult story website</strong>
+                    <p style="color: rgb(15, 14, 14);font-size: 16px">This website contains age-restricted materials
+                        including nudity and explicit depictions of sexual
+                        activity. By entering, you affirm that you are at least 18 years of age or the age of majority
+                        in the jurisdiction you are accessing the website from and you consent to viewing sexually
+                        explicit content.</p>
+                    <div class="row gx-3">
+                        <div class="col-md-6 mb-1">
+                            <button type="button" id="enterButton" class="btn btn-default btn-full"
+                                data-bs-dismiss="modal">I'm 18 or
+                                older - Enter</button>
+                        </div>
+                        <div class="col-md-6 mb-1">
+                            <a href="https://www.google.com/" rel="nofollow" type="button"
+                                class="btn btn-secondary btn-full">I'm under 18 - Exit</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row text-center justify-content-center">
+                    <div class="col-md-9">
+                        <p>Google <a href="https://safety.google/families/parental-supervision/" rel="nofollow">parental
+                                controls
+                                page</a> explains how you can easily
+                            block access to this site.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <section id="hero">
         <div class="container-xl">
 
             <div class="row gy-4">
 
                 <div class="col-lg-8">
-
-                    <!-- featured post large -->
-                    <div class="post featured-post-lg">
-                        <div class="details clearfix">
-                            <a href="#" class="category-badge bd-font">সারপ্রাইজ</a>
-                            <h2 class="post-title bd-font" style="letter-spacing: 2px;"><a href="#">নিশোর
-                                    সারপ্রাইজ দ্বিতীয় পর্ব বউকে
-                                    ন্যাংটো দিলাম পর্ব ১</a>
-                            </h2>
-                            <ul class="meta list-inline mb-0">
-                                <li class="list-inline-item"><a href="#">Katen Doe</a></li>
-                                <li class="list-inline-item">29 March 2021</li>
-                            </ul>
-                        </div>
-                        <a href="#">
-                            <div class="thumb rounded">
-                                <div class="inner data-bg-image"
-                                    data-bg-image="{{ asset('Themes/Theme1/images/posts/featured-lg.jpg') }}"></div>
+                    @if ($banner)
+                        <!-- featured post large -->
+                        <div class="post featured-post-lg">
+                            <div class="details clearfix">
+                                <a href="{{ route('category.view', $banner->category ? $banner->category->slug : '#') }}"
+                                    class="category-badge bd-font">{{ $banner->category ? $banner->category->name : 'Non' }}</a>
+                                <h2 class="post-title bd-font" style="letter-spacing: 2px;"><a
+                                        href="{{ route('blog.view', $banner->slug) }}">{{ $banner->title }}</a>
+                                </h2>
+                                <ul class="meta list-inline mb-0">
+                                    <li class="list-inline-item"><a href="#">{{ $banner->author }}</a></li>
+                                    <li class="list-inline-item">{{ $banner->gettingDate() }}</li>
+                                </ul>
                             </div>
-                        </a>
-                    </div>
+                            <a href="{{ route('blog.view', $banner->slug) }}">
+                                <div class="thumb rounded">
+                                    @if ($banner->image)
+                                        <div class="inner data-bg-image"
+                                            data-bg-image="{{ asset('Themes/Theme1/images/posts/featured-lg.jpg') }}"></div>
+                                    @else
+                                        <div class="inner data-bg-image" data-bg-image="{{ asset($banner->image) }}"></div>
+                                    @endif
+                                </div>
+                            </a>
+                        </div>
+                    @endif
 
                 </div>
 
@@ -79,7 +122,6 @@
 
         </div>
     </section>
-
     <!-- section main content -->
     <section class="main-content">
         <div class="container-xl">
@@ -91,7 +133,7 @@
                     <!-- section header -->
                     <div class="section-header">
                         <h3 class="section-title bd-font">জনপ্রিয়</h3>
-                        <img src="{{ asset('themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
+                        <img src="{{ asset('Themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
                     </div>
 
                     <div class="row gy-5">
@@ -135,7 +177,7 @@
                     <!-- section header -->
                     <div class="section-header">
                         <h3 class="section-title bd-font">অনুপ্রেরণা</h3>
-                        <img src="{{ asset('themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
+                        <img src="{{ asset('Themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
                         <div class="slick-arrows-top">
                             <button type="button" data-role="none" class="carousel-topNav-prev slick-custom-buttons"
                                 aria-label="Previous"><i class="icon-arrow-left"></i></button>
@@ -151,10 +193,11 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <h5 class="fw-bolder bd-font" style="color: #C60B0D !important;">
-                                                {{ $blog->title }}</h5>
+                                            <a href="{{ route('blog.view', $blog->slug) }}" class="fw-bolder bd-font"
+                                                style="color: #203656 !important;font-size: 1.25rem">
+                                                {{ $blog->title }}</a>
                                             <p class="text-secondary mt-3">
-                                                {{ $blog->seo_description }}
+                                                {{ $blog->description() }}
                                             </p>
                                         </div>
                                     </div>
@@ -163,11 +206,13 @@
                                             by <span class="text-uppercase fw-bolder">{{ $blog->author }}</span>
                                         </div>
                                         <div class="col-6 fw-bolder" style="text-align: end">
-                                            <p class="text-secondary"><span style="padding-right: 3px"><img
-                                                        src="{{ asset('Themes/Theme1/images/eyebig.svg') }}"
-                                                        alt=""></span>156 view</p>
+                                            <p class="text-secondary" style="display: flex;justify-content: flex-end;">
+                                                <img src="{{ asset('Themes/Theme1/images/eyebig.svg') }}"
+                                                    alt="{{ $blog->author }}">156 view
+                                            </p>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         @endforeach
@@ -180,7 +225,7 @@
                         <h3 class="section-title bd-font">নতুন</h3>
                         <img src="{{ asset('Themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
                         <div class="slick-arrows-top">
-                            <a href="#" class="btn btn-sm btn-default">View all</a>
+                            <a href="{{ route('blog.all') }}" class="btn btn-sm btn-default">View all</a>
                         </div>
                     </div>
 
@@ -200,9 +245,9 @@
                         <div class="widget rounded">
                             <div class="widget-about data-bg-image text-center"
                                 data-bg-image="{{ asset('Themes/Theme1/images/map-bg.png') }}">
-                                <p class="mb-4 bd-font">প্লিজ বস, আপনার ধোনের পানি ফেলে দিচ্ছি আমি, তাও আমার ক্ষতি করেন না
-                                    আপনি।
-                                    যেভাবে বলবেন সেভাবেই আপনার পানি বের করে দিচ্ছি
+                                <p class="mb-4 bd-font">চটি কথা, একটি অনন্য অনলাইন প্ল্যাটফর্ম যেখানে আপনি আপনার অভিজ্ঞতা ও
+                                    স্বীকারোক্তি শেয়ার করতে পারেন। গোপনীয়তা বজায় রেখে, আপনার কাহিনী শুনুন ও অন্যদের
+                                    কাহিনী পড়ুন
                                 </p>
                                 <ul class="social-icons list-unstyled list-inline mb-0">
                                     <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -224,7 +269,7 @@
                         <div class="widget rounded">
                             <div class="widget-header text-center">
                                 <h3 class="widget-title bd-font">চিরকাল বিখ্যাত</h3>
-                                <img src="{{ asset('themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
+                                <img src="{{ asset('Themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
                             </div>
                             <div class="widget-content">
                                 @foreach ($bests as $key => $blog)
@@ -237,7 +282,7 @@
                         <div class="widget rounded bd-font">
                             <div class="widget-header text-center">
                                 <h3 class="widget-title bd-font">বিভাগ</h3>
-                                <img src="{{ asset('themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
+                                <img src="{{ asset('Themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
                             </div>
                             <div class="widget-content">
                                 <ul class="list">
@@ -255,7 +300,7 @@
                         <div class="widget rounded">
                             <div class="widget-header text-center">
                                 <h3 class="widget-title bd-font">সংযুক্ত থাকুন</h3>
-                                <img src="{{ asset('themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
+                                <img src="{{ asset('Themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
                             </div>
                             <div class="widget-content">
                                 <span class="newsletter-headline text-center mb-3">Join ৭০,০০০ subscribers!</span>
@@ -267,7 +312,7 @@
                                     <button class="btn btn-default btn-full" type="submit">Sign Up</button>
                                 </form>
                                 <span class="newsletter-privacy text-center mt-3">By signing up, you agree to our <a
-                                        href="#">Privacy Policy</a></span>
+                                        href="{{ route('privacy') }}">Privacy Policy</a></span>
                             </div>
                         </div>
 
@@ -275,7 +320,7 @@
                         <div class="widget rounded">
                             <div class="widget-header text-center">
                                 <h3 class="widget-title">Celebration</h3>
-                                <img src="{{ asset('themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
+                                <img src="{{ asset('Themes/Theme1/images/wave.svg') }}" class="wave" alt="wave" />
                             </div>
                             <div class="widget-content">
                                 <div class="post-carousel-widget">
@@ -286,10 +331,10 @@
                                                     <div class="col">
                                                         <a href="{{ route('blog.view', $blog->slug) }}">
                                                             <h5 class="fw-bolder bd-font"
-                                                                style="color: #C60B0D !important;">
+                                                                style="color: #203656 !important;font-size: 1.25rem">
                                                                 {{ $blog->title }}</h5>
                                                         </a>
-                                                        <p class="text-secondary mt-3">{{ $blog->seo_description }}</p>
+                                                        <p class="text-secondary mt-3">{{ $blog->description() }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="font-size: 13px">
@@ -301,7 +346,7 @@
                                                         <p class="text-secondary"
                                                             style="display: flex;justify-content: flex-end;"><img
                                                                 src="{{ asset('Themes/Theme1/images/eyebig.svg') }}"
-                                                                alt="">156 view</p>
+                                                                alt="">{{ $blog->view_count }} view</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -324,7 +369,7 @@
                         <div class="widget no-container rounded text-md-center">
                             <span class="ads-title">- Sponsored Ad -</span>
                             <a href="#" class="widget-ads">
-                                <img src="{{ asset('themes/Theme1/images/wave.svg') }}" alt="Advertisement" />
+                                <img src="{{ asset('Themes/Theme1/images/wave.svg') }}" alt="Advertisement" />
                             </a>
                         </div>
 
